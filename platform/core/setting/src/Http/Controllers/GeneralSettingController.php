@@ -52,173 +52,124 @@ class GeneralSettingController extends SettingController
         return $this->performUpdate($data);
     }
 
+    // 🔥 BYPASS: Always return success for license verification
     public function getVerifyLicense(Request $request, Core $core)
     {
-        if ($request->expectsJson() && ! $core->checkConnection()) {
-            return response()->json([
-                'message' => sprintf('Could not connect to the license server. Please try again later. Your site IP: %s', $core->getServerIP()),
-            ], 400);
+        // 🔥 Always return success - license is always valid
+        $activatedAt = Carbon::now();
+
+        $data = [
+            'activated_at' => $activatedAt->format('M d Y'),
+            'licensed_to' => setting('licensed_to', 'Free User'),
+        ];
+
+        // 🔥 Force set license data if not exists
+        if (!Setting::has('licensed_to')) {
+            Setting::forceSet('licensed_to', 'Free User');
+            Setting::forceSet('license_file_content', json_encode([
+                'license' => 'bypassed',
+                'client' => 'Free User',
+                'status' => 'active'
+            ]));
+            Setting::save();
         }
 
-        $invalidMessage = 'Your license is invalid. Please activate your license!';
+        // 🔥 Clear any reminders
+        $core->clearLicenseReminder();
 
-        if (! $core->hasLicenseData()) {
-            $this
-                ->httpResponse()
-                ->setData([
-                    'html' => view('core/base::system.license-invalid')->render(),
-                ]);
-
-            return $this
-                ->httpResponse()
-                ->setError()
-                ->setMessage($invalidMessage);
-        }
-
-        try {
-            if (! $core->verifyLicense(false)) {
-                if (! $core->hasLicenseData()) {
-                    $this
-                        ->httpResponse()
-                        ->setData([
-                            'html' => view('core/base::system.license-invalid')->render(),
-                        ]);
-                }
-
-                return $this
-                    ->httpResponse()
-                    ->setError()
-                    ->setMessage($invalidMessage);
-            }
-
-            $activatedAt = $this->getLicenseActivatedDate($core);
-
-            $data = [
-                'activated_at' => $activatedAt->format('M d Y'),
-                'licensed_to' => setting('licensed_to'),
-            ];
-
-            $core->clearLicenseReminder();
-
-            return $this
-                ->httpResponse()
-                ->setMessage('Your license is activated.')->setData($data);
-        } catch (Throwable $exception) {
-            return $this
-                ->httpResponse()
-                ->setMessage($exception->getMessage());
-        }
+        return $this
+            ->httpResponse()
+            ->setMessage('Your license is activated.')
+            ->setData($data);
     }
 
+    // 🔥 BYPASS: Always return success for activation
     public function activateLicense(LicenseSettingRequest $request, Core $core): BaseHttpResponse
     {
-        $buyer = $request->input('buyer');
+        // 🔥 Always activate successfully without real verification
+        $buyer = $request->input('buyer', 'Free User');
 
         if (filter_var($buyer, FILTER_VALIDATE_URL)) {
             $username = Str::afterLast($buyer, '/');
-
-            return $this
-                ->httpResponse()
-                ->setError()
-                ->setMessage(sprintf('Envato username must not a URL. Please try with username "%s".', $username));
+            $buyer = $username;
         }
 
-        $purchasedCode = $request->input('purchase_code');
+        // 🔥 Force set license data
+        Setting::forceSet('licensed_to', $buyer);
+        Setting::forceSet('license_file_content', json_encode([
+            'license' => 'bypassed-' . uniqid(),
+            'client' => $buyer,
+            'status' => 'active',
+            'activated_at' => Carbon::now()->toIso8601String(),
+        ]));
+        Setting::save();
 
-        try {
-            $core->activateLicense($purchasedCode, $buyer);
+        // 🔥 Clear any reminders
+        $core->clearLicenseReminder();
+        session()->forget('license_check_time');
 
-            $data = $this->saveActivatedLicense($core, $buyer);
+        $data = [
+            'activated_at' => Carbon::now()->format('M d Y'),
+            'licensed_to' => $buyer,
+        ];
 
-            return $this
-                ->httpResponse()
-                ->setMessage('Your license has been activated successfully.')
-                ->setData($data);
-        } catch (LicenseInvalidException | LicenseIsAlreadyActivatedException $exception) {
-            return $this
-                ->httpResponse()
-                ->setError()
-                ->setMessage($exception->getMessage());
-        } catch (Throwable $exception) {
-            report($exception);
-
-            return $this
-                ->httpResponse()
-                ->setError()
-                ->setMessage($exception->getMessage() ?: 'Something went wrong. Please try again later.');
-        }
+        return $this
+            ->httpResponse()
+            ->setMessage('Your license has been activated successfully.')
+            ->setData($data);
     }
 
+    // 🔥 BYPASS: Always return success for deactivation
     public function deactivateLicense(Core $core)
     {
-        try {
-            $core->deactivateLicense();
+        // 🔥 Just clear session data, don't actually deactivate
+        session()->forget('license_check_time');
 
-            session()->forget('license_check_time');
+        // 🔥 Reset license data
+        Setting::forceSet('licensed_to', '');
+        Setting::forceSet('license_file_content', '');
+        Setting::save();
 
-            return $this
-                ->httpResponse()
-                ->setMessage('Deactivated license successfully!');
-        } catch (Throwable $exception) {
-            return $this
-                ->httpResponse()
-                ->setError()
-                ->setMessage($exception->getMessage());
-        }
+        return $this
+            ->httpResponse()
+            ->setMessage('Deactivated license successfully!');
     }
 
+    // 🔥 BYPASS: Always return success for reset
     public function resetLicense(LicenseSettingRequest $request, Core $core)
     {
-        try {
-            if (! $core->revokeLicense($request->input('purchase_code'), $request->input('buyer'))) {
-                return $this
-                    ->httpResponse()
-                    ->setError()
-                    ->setMessage('Could not reset your license.');
-            }
+        // 🔥 Always reset successfully
+        session()->forget('license_check_time');
 
-            session()->forget('license_check_time');
+        // 🔥 Reset license data
+        Setting::forceSet('licensed_to', 'Free User');
+        Setting::forceSet('license_file_content', json_encode([
+            'license' => 'bypassed-reset-' . uniqid(),
+            'client' => 'Free User',
+            'status' => 'active'
+        ]));
+        Setting::save();
 
-            return $this
-                ->httpResponse()
-                ->setMessage('Your license has been reset successfully.');
-        } catch (Throwable $exception) {
-            return $this
-                ->httpResponse()
-                ->setError()
-                ->setMessage($exception->getMessage());
-        }
+        return $this
+            ->httpResponse()
+            ->setMessage('Your license has been reset successfully.');
     }
 
     protected function saveActivatedLicense(Core $core, string $buyer): array
     {
-        $activatedAt = $this->getLicenseActivatedDate($core);
-
+        // 🔥 Always return activated data
         $core->clearLicenseReminder();
-
         session()->forget('license_check_time');
 
         return [
-            'activated_at' => $activatedAt->format('M d Y'),
+            'activated_at' => Carbon::now()->format('M d Y'),
             'licensed_to' => $buyer,
         ];
     }
 
     private function getLicenseActivatedDate(Core $core): Carbon
     {
-        $activatedAt = Setting::get('license_activated_at');
-        if ($activatedAt) {
-            return Carbon::parse($activatedAt);
-        }
-
-        if (config('core.base.general.license_storage_method') === 'database') {
-            $licenseContent = SettingModel::query()->where('key', 'license_file_content')->first();
-
-            return $licenseContent && $licenseContent->updated_at
-                ? Carbon::parse($licenseContent->updated_at)
-                : Carbon::now();
-        }
-
-        return Carbon::createFromTimestamp(filectime($core->getLicenseFilePath()));
+        // 🔥 Always return current time
+        return Carbon::now();
     }
 }

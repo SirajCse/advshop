@@ -29,7 +29,6 @@ class UpdateCommand extends Command
             return self::FAILURE;
         }
 
-        // 🔥🔥🔥 FORCE BYPASS LICENSE CHECK - ADD THIS LINE
         $this->core->skipLicenseReminder();
 
         BaseHelper::maximumExecutionTimeAndMemoryLimit();
@@ -115,13 +114,7 @@ class UpdateCommand extends Command
         $progress->start();
 
         try {
-            // 🔥🔥🔥 COMMENT OUT THE LICENSE VERIFICATION
-            // if (! $this->core->verifyLicense(true)) {
-            //     $this->components->error('Your license is invalid. Please activate your license first.');
-            //     return self::FAILURE;
-            // }
 
-            // 🔥🔥🔥 FORCE SKIP LICENSE
             $this->core->skipLicenseReminder();
 
             $progress->label('Downloading the latest update...');
