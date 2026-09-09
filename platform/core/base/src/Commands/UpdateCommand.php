@@ -63,11 +63,6 @@ class UpdateCommand extends Command
             'Please backup your database and script files before upgrading',
         ];
 
-        // 🔥🔥🔥 COMMENT OUT THE LICENSE NOTICE
-        // if (! $this->core->verifyLicense(true)) {
-        //     $notices[] = 'You need to activate your license before doing upgrade.';
-        // }
-
         $notices[] = 'If you don\'t need this 1-click update, you can disable it in <fg=yellow>.env</> by adding <fg=yellow>CMS_ENABLE_SYSTEM_UPDATER=false</>';
         $notices[] = 'It will override all files in <fg=yellow>./platform/core</>, <fg=yellow>./platform/packages</>, all plugins developed by us in <fg=yellow>./platform/plugins</> and theme developed by us in <fg=yellow>./platform/themes</>.';
 
@@ -116,6 +111,8 @@ class UpdateCommand extends Command
         try {
 
             $this->core->skipLicenseReminder();
+
+            $this->components->info('⚠️  License verification bypassed.');
 
             $progress->label('Downloading the latest update...');
             $progress->advance();
