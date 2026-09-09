@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'create' => 'Create new gallery',
+    'galleries' => 'Galleries',
+    'item' => 'Gallery item',
+    'select_image' => 'Select images',
+    'reset' => 'Reset gallery',
+    'update_photo_description' => 'Update photo\'s description',
+    'update_photo_description_placeholder' => 'Photo\'s description...',
+    'delete_photo' => 'Delete this photo',
+    'gallery_box' => 'Gallery images',
+    'by' => 'By',
+    'menu_name' => 'Galleries',
+    'gallery_images' => 'Gallery images',
+    'add_gallery_short_code' => 'Add a gallery',
+    'shortcode_name' => 'Gallery images',
+    'limit_display' => 'Limit number display',
+    'edit_this_gallery' => 'Edit this gallery',
+    'galleries_page' => 'Galleries page',
+    'by_name' => 'By :name',
+    'title' => 'Title',
+    'limit' => 'Limit',
+    'limit_helper' => 'Number of galleries to show. Set to 0 or leave it empty to show all. It will be overridden if you select galleries below.',
+];

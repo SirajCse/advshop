@@ -1,0 +1,42 @@
+{
+    "What Shipping Methods Are Available?": {
+        "question": "Metode pengiriman apa saja yang tersedia?",
+        "answer": "Kami menyediakan beberapa metode pengiriman termasuk pengiriman standar, pengiriman kilat, dan pengiriman hari yang sama di area tertentu."
+    },
+    "Do You Ship Internationally?": {
+        "question": "Apakah Anda mengirim ke luar negeri?",
+        "answer": "Ya, kami mengirim ke banyak negara di seluruh dunia. Biaya dan waktu pengiriman bervariasi tergantung tujuan."
+    },
+    "How Long Will It Take To Get My Package?": {
+        "question": "Berapa lama waktu yang dibutuhkan untuk menerima paket saya?",
+        "answer": "Pengiriman standar biasanya memakan waktu 5-7 hari kerja, pengiriman kilat 2-3 hari kerja. Anda akan menerima informasi pelacakan saat pesanan dikirim."
+    },
+    "What Payment Methods Are Accepted?": {
+        "question": "Metode pembayaran apa yang diterima?",
+        "answer": "Kami menerima kartu kredit/debit (Visa, MasterCard, American Express), PayPal, dan gateway pembayaran online aman lainnya."
+    },
+    "Is Buying On-Line Safe?": {
+        "question": "Apakah belanja online aman?",
+        "answer": "Sangat aman. Kami menggunakan enkripsi SSL dan langkah keamanan standar industri untuk melindungi informasi pribadi dan pembayaran Anda."
+    },
+    "How do I place an Order?": {
+        "question": "Bagaimana cara melakukan pemesanan?",
+        "answer": "Jelajahi produk, tambahkan ke keranjang dan lanjutkan ke pembayaran. Masukkan informasi pengiriman dan pembayaran untuk menyelesaikan pesanan Anda."
+    },
+    "How Can I Cancel Or Change My Order?": {
+        "question": "Bagaimana cara membatalkan atau mengubah pesanan saya?",
+        "answer": "Silakan hubungi tim layanan pelanggan kami sesegera mungkin. Kami akan berusaha memenuhi permintaan Anda, tetapi setelah pesanan diproses, perubahan mungkin tidak memungkinkan."
+    },
+    "Do I need an account to place an order?": {
+        "question": "Apakah saya perlu akun untuk memesan?",
+        "answer": "Tidak wajib, Anda bisa berbelanja sebagai tamu. Namun, membuat akun membantu Anda melacak pesanan dan menyimpan informasi pengiriman untuk pembelian berikutnya."
+    },
+    "How Do I Track My Order?": {
+        "question": "Bagaimana cara melacak pesanan saya?",
+        "answer": "Saat pesanan Anda dikirim, Anda akan menerima email berisi nomor pelacakan. Gunakan nomor ini di situs web kami atau situs kurir untuk melacak paket Anda."
+    },
+    "How Can I Return a Product?": {
+        "question": "Bagaimana cara mengembalikan produk?",
+        "answer": "Anda dapat mengembalikan produk dalam waktu 30 hari sejak pengiriman. Hubungi tim dukungan dengan detail pesanan Anda dan kami akan memandu Anda melalui proses pengembalian."
+    }
+}

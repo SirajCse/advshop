@@ -1,0 +1,109 @@
+// Vendor vacation mode — store-banner / product-detail notice + vendor-card pill.
+//
+// Warm amber "temporarily away" tone built from shofy tokens (--tp-yellow-1 accent,
+// --tp-heading-primary / --tp-text-body for copy, --primary-font for type). Aligned
+// with the surrounding marketplace surfaces: 8px radius, hairline borders, the same
+// font stack the rest of the storefront uses.
+//
+// .bb-store-vacation-notice  -> theme override in views/marketplace/includes/vacation-notice.blade.php
+// .bb-store-item-vacation    -> plugin's vendor-card badge (themes/includes/store-item.blade.php)
+
+$vacation-accent: var(--tp-yellow-1, #ffb342);
+$vacation-surface: #fff7ec; // soft cream, harmonises with the amber accent
+$vacation-border: rgba(255, 179, 66, 0.4);
+$vacation-ink: #92560a; // darkened amber for AA contrast on the cream surface
+
+// ── Notice (single-store banner + product detail page) ──────────────
+.bb-store-vacation-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    margin: 0 0 20px;
+    background-color: $vacation-surface;
+    border: 1px solid $vacation-border;
+    border-radius: 8px;
+    color: var(--tp-heading-primary, #010f1c);
+    text-align: start;
+
+    &__icon {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: rgba(255, 179, 66, 0.18);
+        color: $vacation-ink;
+
+        svg,
+        i {
+            width: 20px;
+            height: 20px;
+            font-size: 18px;
+            line-height: 1;
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+    }
+
+    &__title {
+        font-family: var(--primary-font), sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1.3;
+        color: var(--tp-heading-primary, #010f1c);
+    }
+
+    &__text {
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--tp-text-body, #55585b);
+    }
+}
+
+// The shop banner can sit over a cover image where the surrounding type goes white.
+// Keep the notice on its solid cream surface with dark text regardless of context.
+.bb-shop-banner .bb-store-vacation-notice {
+    .bb-store-vacation-notice__title {
+        color: var(--tp-heading-primary, #010f1c);
+    }
+
+    .bb-store-vacation-notice__text {
+        color: var(--tp-text-body, #55585b);
+    }
+}
+
+// ── Pill badge (vendor listing card — plugin's store-item.blade.php) ──
+// The plugin renders `.badge.bg-orange.text-orange-fg.bb-store-item-vacation`.
+// Re-tone it to match the notice while keeping the Tabler badge baseline intact.
+.bb-store-item-vacation {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    background-color: $vacation-surface !important;
+    border: 1px solid $vacation-border;
+    border-radius: 999px;
+    color: $vacation-ink !important;
+    font-family: var(--primary-font), sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+
+    svg,
+    i {
+        width: 14px;
+        height: 14px;
+        font-size: 13px;
+        line-height: 1;
+    }
+}

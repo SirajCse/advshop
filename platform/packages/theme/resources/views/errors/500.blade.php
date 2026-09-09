@@ -1,0 +1,28 @@
+@extends('packages/theme::errors.master')
+
+@section('title', trans('packages/theme::theme.errors.500_internal_server_error'))
+
+@section('content')
+    <div class="empty">
+        <div class="empty-header">500</div>
+        <p class="empty-title">{{ trans('packages/theme::theme.errors.internal_server_error') }}</p>
+        <p class="empty-subtitle text-secondary">
+            {{ trans('packages/theme::theme.errors.internal_server_error_description') }}
+        </p>
+
+        <p class="empty-subtitle text-secondary">{!! BaseHelper::clean(
+            trans('packages/theme::theme.errors.page_not_found_back_home', ['link' => BaseHelper::getHomepageUrl()]),
+        ) !!}</p>
+
+        <div class="empty-action">
+            <x-core::button
+                tag="a"
+                href="{{ BaseHelper::getHomepageUrl() }}"
+                color="primary"
+                icon="ti ti-arrow-left"
+            >
+                {{ trans('packages/theme::theme.common.take_me_home') }}
+            </x-core::button>
+        </div>
+    </div>
+@endsection

@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'name' => 'FAQ',
+    'create' => 'New faq',
+    'question' => 'سؤال',
+    'answer' => 'إجابة',
+    'question_placeholder' => 'أدخل سؤالك...',
+    'answer_placeholder' => 'أدخل إجابتك...',
+    'category' => 'فئة',
+    'faq_schema_config' => 'تكوين مخطط الأسئلة الشائعة (:link)',
+    'faq_schema_config_description' => 'يسجل هذا التكوين بيانات منظمة للأسئلة الشائعة لأغراض تحسين محركات البحث فقط. لن يتم عرضه في محتوى السمة الأمامية. المخطط مضمن في مصدر الصفحة ويمكن عرضه باستخدام "عرض المصدر" أو اختباره باستخدام أداة اختبار النتائج المنسقة من Google.',
+    'schema_testing_tool' => 'اختبار باستخدام Google Rich Results Test',
+    'learn_more' => 'يتعلم أكثر',
+    'settings' => [        'title' => 'FAQ',
+        'description' => 'Settings for FAQ',
+        'enable_faq_schema' => 'Enable FAQ Schema?',
+        'enable_faq_schema_description' => 'Learn more: https://developers.google.com/search/docs/data-types/faqpage',
+    ],
+    'select_category' => 'اختر تصنيف',
+    'add_item' => 'اضافة عنصر',
+    'or' => 'أو',
+    'faqs_menu_name' => 'المشرف -> الأسئلة الشائعة -> إنشاء',
+    'select_from_existing' => 'اختر من الأسئلة الشائعة الموجودة',
+    'no_existing' => 'لا توجد أسئلة شائعة، يرجى إنشاء واحدة أولاً في :link.',
+];

@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'create' => 'Создать новую галерею',
+    'galleries' => 'Галереи',
+    'item' => 'Элемент галереи',
+    'select_image' => 'Выбрать изображения',
+    'reset' => 'Сбросить галерею',
+    'update_photo_description' => 'Обновить описание фото',
+    'update_photo_description_placeholder' => 'Описание фото...',
+    'delete_photo' => 'Удалить это фото',
+    'gallery_box' => 'Изображения галереи',
+    'by' => 'От',
+    'menu_name' => 'Галереи',
+    'gallery_images' => 'Изображения галереи',
+    'add_gallery_short_code' => 'Добавить галерею',
+    'shortcode_name' => 'Изображения галереи',
+    'limit_display' => 'Ограничить количество отображения',
+    'edit_this_gallery' => 'Редактировать эту галерею',
+    'galleries_page' => 'Страница галерей',
+    'by_name' => 'От :name',
+    'title' => 'Заголовок',
+    'limit' => 'Лимит',
+    'limit_helper' => 'Количество галерей для показа. ',
+];

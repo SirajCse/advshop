@@ -1,0 +1,48 @@
+<?php
+
+namespace Botble\Widget\Factories;
+
+use Botble\Widget\Misc\InvalidWidgetClassException;
+use Exception;
+use Illuminate\Support\HtmlString;
+
+class WidgetFactory extends AbstractWidgetFactory
+{
+    protected array $widgets = [];
+
+    public function registerWidget(string $widget): WidgetFactory
+    {
+        $this->widgets[] = $widget;
+
+        return $this;
+    }
+
+    public function getWidgets(): array
+    {
+        foreach ($this->widgets as $key => $widget) {
+            $this->widgets[$key] = new $widget();
+        }
+
+        return $this->widgets;
+    }
+
+    public function run(): HtmlString|string|null
+    {
+        $args = func_get_args();
+
+        try {
+            $this->instantiateWidget($args);
+        } catch (InvalidWidgetClassException | Exception $exception) {
+            return (app()->hasDebugModeEnabled() && ! app()->isProduction()) ? $exception->getMessage() : null;
+        }
+
+        return $this->convertToViewExpression($this->getContent());
+    }
+
+    protected function getContent(): ?string
+    {
+        $content = $this->app->call([$this->widget, 'run'], $this->widgetParams);
+
+        return is_object($content) ? $content->__toString() : $content;
+    }
+}

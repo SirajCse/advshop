@@ -1,0 +1,43 @@
+{
+    "Home": {
+        "name": "\u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629"
+    },
+    "Categories": {
+        "name": "\u0627\u0644\u0641\u0626\u0627\u062a"
+    },
+    "Brands": {
+        "name": "\u0627\u0644\u0639\u0644\u0627\u0645\u0627\u062a \u0627\u0644\u062a\u062c\u0627\u0631\u064a\u0629"
+    },
+    "Coupons": {
+        "name": "\u0643\u0648\u0628\u0648\u0646\u0627\u062a"
+    },
+    "Blog": {
+        "name": "\u0627\u0644\u0645\u062f\u0648\u0646\u0629"
+    },
+    "Contact": {
+        "name": "\u0627\u062a\u0635\u0644 \u0628\u0646\u0627",
+        "content": "[contact-form show_contact_form=&quot;1&quot; title=&quot;\u0623\u0631\u0633\u0644 \u0631\u0633\u0627\u0644\u0629&quot; quantity=&quot;2&quot; icon_1=&quot;main/contact/icon-1.png&quot; content_1=&quot;contact@shofy.com &lt;br&gt; &lt;strong&gt;+670 413 90 762&lt;/strong&gt;&quot; icon_2=&quot;main/contact/icon-2.png&quot; content_2=&quot;502 New St, Brighton VIC 3186, Australia&quot; show_social_info=&quot;1&quot; social_info_label=&quot;\u062a\u0627\u0628\u0639\u0646\u0627 \u0639\u0644\u0649 \u0648\u0633\u0627\u0626\u0644 \u0627\u0644\u062a\u0648\u0627\u0635\u0644&quot; social_info_icon=&quot;main/contact/icon-3.png&quot;][/contact-form][google-map]502 New Street, Brighton VIC, Australia[/google-map]"
+    },
+    "FAQs": {
+        "name": "\u0627\u0644\u0623\u0633\u0626\u0644\u0629 \u0627\u0644\u0634\u0627\u0626\u0639\u0629",
+        "content": "[faqs style=&quot;group&quot; title=&quot;\u0627\u0644\u0623\u0633\u0626\u0644\u0629 \u0627\u0644\u0634\u0627\u0626\u0639\u0629&quot; description=&quot;\u0641\u064a\u0645\u0627 \u064a\u0644\u064a \u0627\u0644\u0623\u0633\u0626\u0644\u0629 \u0627\u0644\u0634\u0627\u0626\u0639\u0629\u060c \u0642\u062f \u062a\u062c\u062f \u0627\u0644\u0625\u062c\u0627\u0628\u0629 \u0628\u0646\u0641\u0633\u0643.&quot; category_ids=&quot;1,2,3&quot; expand_first_time=&quot;1&quot;][/faqs]"
+    },
+    "Cookie Policy": {
+        "name": "\u0633\u064a\u0627\u0633\u0629 \u0645\u0644\u0641\u0627\u062a \u062a\u0639\u0631\u064a\u0641 \u0627\u0644\u0627\u0631\u062a\u0628\u0627\u0637"
+    },
+    "Our Story": {
+        "name": "\u0642\u0635\u062a\u0646\u0627"
+    },
+    "Careers": {
+        "name": "\u0648\u0638\u0627\u0626\u0641"
+    },
+    "Shipping": {
+        "name": "\u0627\u0644\u0634\u062d\u0646 \u0648\u0627\u0644\u062a\u0648\u0635\u064a\u0644"
+    },
+    "Coming Soon": {
+        "name": "\u0642\u0631\u064a\u0628\u0627\u064b"
+    },
+    "Return Policy": {
+        "name": "\u0633\u064a\u0627\u0633\u0629 \u0627\u0644\u0625\u0631\u062c\u0627\u0639"
+    }
+}

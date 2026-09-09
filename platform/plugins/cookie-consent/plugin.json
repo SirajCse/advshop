@@ -1,0 +1,11 @@
+{
+    "id": "botble/cookie-consent",
+    "name": "Cookie Consent",
+    "namespace": "Botble\\CookieConsent\\",
+    "provider": "Botble\\CookieConsent\\Providers\\CookieConsentServiceProvider",
+    "author": "Botble Technologies",
+    "url": "https://botble.com",
+    "version": "2.0.10",
+    "description": "Display a GDPR-compliant cookie consent banner to visitors.",
+    "minimum_core_version": "7.4.0"
+}

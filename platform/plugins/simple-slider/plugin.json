@@ -1,0 +1,11 @@
+{
+    "id": "botble/simple-slider",
+    "name": "Simple Slider",
+    "namespace": "Botble\\SimpleSlider\\",
+    "provider": "Botble\\SimpleSlider\\Providers\\SimpleSliderServiceProvider",
+    "author": "Botble Technologies",
+    "url": "https://botble.com",
+    "version": "2.0.10",
+    "description": "Create image sliders for homepages and landing sections.",
+    "minimum_core_version": "7.4.0"
+}

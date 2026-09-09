@@ -1,0 +1,1 @@
+(function(){$(()=>{$(document).on("click",".invoice-generate",e=>{e.preventDefault();const t=$(e.currentTarget),a=$(t.find("span[data-trigger]")).data("url");$httpClient.make().withButtonLoading(t).get(a).then(({data:n})=>{Botble.showSuccess(n.message),window.LaravelDataTables["botble-ecommerce-tables-invoice-table"].draw()})})})})();

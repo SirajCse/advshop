@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'create' => 'নতুন গ্যালারি তৈরি করুন',
+    'galleries' => 'গ্যালারি',
+    'item' => 'গ্যালারি আইটেম',
+    'select_image' => 'ছবি নির্বাচন করুন',
+    'reset' => 'গ্যালারি রিসেট করুন',
+    'update_photo_description' => 'ছবির বিবরণ আপডেট করুন',
+    'update_photo_description_placeholder' => 'ছবির বিবরণ...',
+    'delete_photo' => 'এই ছবি মুছুন',
+    'gallery_box' => 'গ্যালারি ছবি',
+    'by' => 'দ্বারা',
+    'menu_name' => 'গ্যালারি',
+    'gallery_images' => 'গ্যালারি ছবি',
+    'add_gallery_short_code' => 'একটি গ্যালারি যোগ করুন',
+    'shortcode_name' => 'গ্যালারি ছবি',
+    'limit_display' => 'প্রদর্শন সংখ্যা সীমিত করুন',
+    'edit_this_gallery' => 'এই গ্যালারি সম্পাদনা করুন',
+    'galleries_page' => 'গ্যালারি পৃষ্ঠা',
+    'by_name' => ':name দ্বারা',
+    'title' => 'শিরোনাম',
+    'limit' => 'সীমা',
+    'limit_helper' => 'দেখানোর জন্য গ্যালারির সংখ্যা। ',
+];

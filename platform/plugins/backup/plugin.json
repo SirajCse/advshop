@@ -1,0 +1,11 @@
+{
+    "id": "botble/backup",
+    "name": "Backup",
+    "namespace": "Botble\\Backup\\",
+    "provider": "Botble\\Backup\\Providers\\BackupServiceProvider",
+    "author": "Botble Technologies",
+    "url": "https://botble.com",
+    "version": "2.0.9",
+    "description": "Backup and restore database and uploaded files in one click.",
+    "minimum_core_version": "7.4.0"
+}

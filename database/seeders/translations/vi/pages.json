@@ -1,0 +1,43 @@
+{
+    "Home": {
+        "name": "Trang ch\u1ee7"
+    },
+    "Categories": {
+        "name": "Danh m\u1ee5c"
+    },
+    "Brands": {
+        "name": "Th\u01b0\u01a1ng hi\u1ec7u"
+    },
+    "Coupons": {
+        "name": "Phi\u1ebfu gi\u1ea3m gi\u00e1"
+    },
+    "Blog": {
+        "name": "Blog"
+    },
+    "Contact": {
+        "name": "Li\u00ean h\u1ec7",
+        "content": "[contact-form show_contact_form=&quot;1&quot; title=&quot;G\u1eedi tin nh\u1eafn&quot; quantity=&quot;2&quot; icon_1=&quot;main/contact/icon-1.png&quot; content_1=&quot;contact@shofy.com &lt;br&gt; &lt;strong&gt;+670 413 90 762&lt;/strong&gt;&quot; icon_2=&quot;main/contact/icon-2.png&quot; content_2=&quot;502 New St, Brighton VIC 3186, Australia&quot; show_social_info=&quot;1&quot; social_info_label=&quot;T\u00ecm tr\u00ean m\u1ea1ng x\u00e3 h\u1ed9i&quot; social_info_icon=&quot;main/contact/icon-3.png&quot;][/contact-form][google-map]502 New Street, Brighton VIC, Australia[/google-map]"
+    },
+    "FAQs": {
+        "name": "C\u00e2u h\u1ecfi th\u01b0\u1eddng g\u1eb7p",
+        "content": "[faqs style=&quot;group&quot; title=&quot;C\u00e2u h\u1ecfi th\u01b0\u1eddng g\u1eb7p&quot; description=&quot;D\u01b0\u1edbi \u0111\u00e2y l\u00e0 c\u00e1c c\u00e2u h\u1ecfi th\u01b0\u1eddng g\u1eb7p, b\u1ea1n c\u00f3 th\u1ec3 t\u00ecm th\u1ea5y c\u00e2u tr\u1ea3 l\u1eddi cho m\u00ecnh.&quot; category_ids=&quot;1,2,3&quot; expand_first_time=&quot;1&quot;][/faqs]"
+    },
+    "Cookie Policy": {
+        "name": "Ch\u00ednh s\u00e1ch cookie"
+    },
+    "Our Story": {
+        "name": "C\u00e2u chuy\u1ec7n c\u1ee7a ch\u00fang t\u00f4i"
+    },
+    "Careers": {
+        "name": "Tuy\u1ec3n d\u1ee5ng"
+    },
+    "Shipping": {
+        "name": "V\u1eadn chuy\u1ec3n"
+    },
+    "Coming Soon": {
+        "name": "S\u1eafp ra m\u1eaft"
+    },
+    "Return Policy": {
+        "name": "Ch\u00ednh s\u00e1ch \u0111\u1ed5i tr\u1ea3"
+    }
+}

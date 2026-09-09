@@ -1,0 +1,20 @@
+<?php
+
+return [
+    'request_submitted' => 'Permintaan Anda telah dikirim. Silakan periksa email Anda untuk konfirmasi.',
+    'verification_code_sent' => 'A 6-digit verification code has been sent to your email. Please enter it to complete account deletion.',
+    'confirm_url' => 'URL konfirmasi penghapusan',
+    'verification_code' => 'Verification code',
+    'deletion_confirmed' => 'Akun Anda telah dihapus!',
+    'invalid_verification_code' => 'The verification code you entered is invalid. Please try again.',
+    'verification_code_expired' => 'The verification code has expired. Please request a new one.',
+    'back_to_homepage' => 'Kembali ke beranda',
+    'reason' => 'Alasan',
+    'confirmed_at' => 'Dikonfirmasi pada',
+    'deleted_at' => 'Dihapus pada',
+    'statuses' => [
+        'waiting_for_confirmation' => 'Menunggu konfirmasi',
+        'confirmed' => 'Dikonfirmasi',
+        'canceled' => 'Dibatalkan',
+    ],
+];

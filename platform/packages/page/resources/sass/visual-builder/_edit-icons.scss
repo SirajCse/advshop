@@ -1,0 +1,92 @@
+// Edit Icon Overlays (injected into iframe)
+// Using Bootstrap 5 and Tabler UI patterns
+
+.vb-shortcode-toolbar {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 9999;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+
+    .vb-toolbar-btn {
+        width: 28px;
+        height: 28px;
+        background: var(--tblr-primary);
+        border: none;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 0;
+        pointer-events: auto;
+
+        svg,
+        i {
+            color: #fff;
+            stroke: #fff;
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+        }
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        &.vb-edit-btn {
+            background: var(--tblr-primary);
+
+            &:hover {
+                background: var(--tblr-primary-darken);
+            }
+        }
+
+        &.vb-delete-btn {
+            background: var(--tblr-danger);
+
+            &:hover {
+                background: var(--tblr-danger-darken);
+            }
+        }
+    }
+}
+
+// Show toolbar on hover
+[data-shortcode-id] {
+    position: relative;
+
+    &:hover > .vb-shortcode-toolbar {
+        opacity: 1;
+    }
+}
+
+// Active shortcode highlighting
+[data-shortcode-id].vb-active {
+    outline: 2px solid var(--tblr-primary);
+    outline-offset: 2px;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: rgba(var(--tblr-primary-rgb), 0.05);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    > .vb-shortcode-toolbar {
+        opacity: 1;
+    }
+}

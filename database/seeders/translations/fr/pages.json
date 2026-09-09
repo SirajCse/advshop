@@ -1,0 +1,43 @@
+{
+    "Home": {
+        "name": "Accueil"
+    },
+    "Categories": {
+        "name": "Cat\u00e9gories"
+    },
+    "Brands": {
+        "name": "Marques"
+    },
+    "Coupons": {
+        "name": "Coupons"
+    },
+    "Blog": {
+        "name": "Blog"
+    },
+    "Contact": {
+        "name": "Contact",
+        "content": "[contact-form show_contact_form=&quot;1&quot; title=&quot;Envoyer un message&quot; quantity=&quot;2&quot; icon_1=&quot;main/contact/icon-1.png&quot; content_1=&quot;contact@shofy.com &lt;br&gt; &lt;strong&gt;+670 413 90 762&lt;/strong&gt;&quot; icon_2=&quot;main/contact/icon-2.png&quot; content_2=&quot;502 New St, Brighton VIC 3186, Australia&quot; show_social_info=&quot;1&quot; social_info_label=&quot;Retrouvez-nous sur les r\u00e9seaux sociaux&quot; social_info_icon=&quot;main/contact/icon-3.png&quot;][/contact-form][google-map]502 New Street, Brighton VIC, Australia[/google-map]"
+    },
+    "FAQs": {
+        "name": "FAQ",
+        "content": "[faqs style=&quot;group&quot; title=&quot;Questions fr\u00e9quemment pos\u00e9es&quot; description=&quot;Voici les questions fr\u00e9quemment pos\u00e9es, vous trouverez peut-\u00eatre la r\u00e9ponse par vous-m\u00eame.&quot; category_ids=&quot;1,2,3&quot; expand_first_time=&quot;1&quot;][/faqs]"
+    },
+    "Cookie Policy": {
+        "name": "Politique de cookies"
+    },
+    "Our Story": {
+        "name": "Notre histoire"
+    },
+    "Careers": {
+        "name": "Carri\u00e8res"
+    },
+    "Shipping": {
+        "name": "Livraison"
+    },
+    "Coming Soon": {
+        "name": "Bient\u00f4t disponible"
+    },
+    "Return Policy": {
+        "name": "Politique de retour"
+    }
+}

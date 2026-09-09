@@ -1,0 +1,155 @@
+// Move Modal Styles
+// Tree view UI for folder selection in move items modal
+
+#modal_move_items {
+    .move-items-container {
+        // Header text
+        .move-folder-tree-header {
+            padding: 0 0.25rem;
+        }
+    }
+
+    // Folder tree wrapper
+    .move-folder-list-wrapper {
+        border: var(--bb-border-width) var(--bb-border-style) var(--bb-border-color);
+        border-radius: var(--bb-border-radius);
+        background-color: var(--bb-body-bg);
+        max-height: 350px;
+        overflow-y: auto;
+
+        #move-folder-list {
+            margin: 0;
+
+            .list-group-item {
+                border-left: 0;
+                border-right: 0;
+                border-radius: 0;
+                padding: 0.5rem 0.75rem;
+                transition: all 0.15s ease-in-out;
+                cursor: pointer;
+
+                &:first-child {
+                    border-top: 0;
+                    border-top-left-radius: var(--bb-border-radius);
+                    border-top-right-radius: var(--bb-border-radius);
+                }
+
+                &:last-child {
+                    border-bottom: 0;
+                    border-bottom-left-radius: var(--bb-border-radius);
+                    border-bottom-right-radius: var(--bb-border-radius);
+                }
+            }
+
+            // Folder item styling
+            .js-move-folder-item {
+                .js-move-folder-toggle {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.125rem;
+                    border-radius: var(--bb-border-radius-sm);
+                    color: var(--bb-muted);
+                    transition: all 0.15s ease-in-out;
+
+                    &:hover {
+                        background-color: var(--bb-bg-surface-secondary);
+                        color: var(--bb-body-color);
+                    }
+
+                    &.invisible {
+                        visibility: hidden;
+                    }
+
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+
+                .folder-name {
+                    font-weight: 400;
+                    color: var(--bb-body-color);
+                    font-size: 0.875rem;
+                }
+
+                &:hover {
+                    background-color: var(--bb-bg-surface-secondary);
+                }
+
+                &.active {
+                    background-color: rgba(var(--bb-primary-rgb), 0.08);
+                    border-color: rgba(var(--bb-primary-rgb), 0.15);
+
+                    .folder-name {
+                        color: var(--bb-primary);
+                        font-weight: 500;
+                    }
+
+                    .icon-tabler-folder {
+                        color: var(--bb-primary);
+                    }
+                }
+
+                // Drag and drop styles
+                &.dragging {
+                    opacity: 0.5;
+                    background-color: var(--bb-bg-surface-secondary);
+                }
+
+                &.drag-over {
+                    background-color: rgba(var(--bb-success-rgb), 0.15);
+                    border-color: var(--bb-success);
+                    box-shadow: inset 0 0 0 2px var(--bb-success);
+
+                    .folder-name {
+                        color: var(--bb-success);
+                        font-weight: 500;
+                    }
+
+                    .icon-tabler-folder {
+                        color: var(--bb-success);
+                    }
+                }
+
+                .js-move-folder-drag-handle {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.25rem;
+                    margin-right: 0.25rem;
+                    cursor: grab;
+                    color: var(--bb-muted);
+                    border-radius: var(--bb-border-radius-sm);
+                    transition: all 0.15s ease-in-out;
+
+                    &:hover {
+                        background-color: var(--bb-bg-surface-secondary);
+                        color: var(--bb-body-color);
+                    }
+
+                    &:active {
+                        cursor: grabbing;
+                    }
+
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+            }
+
+            // Empty/loading state
+            .list-group-item.text-center.text-muted {
+                padding: 2rem;
+                background-color: var(--bb-bg-surface-secondary);
+                cursor: default;
+
+                .spinner-border {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "What Shipping Methods Are Available?": {
+        "question": "Có những phương thức vận chuyển nào?",
+        "answer": "Chúng tôi cung cấp nhiều phương thức vận chuyển khác nhau bao gồm vận chuyển tiêu chuẩn, vận chuyển nhanh và giao hàng trong ngày ở các khu vực được chọn."
+    },
+    "Do You Ship Internationally?": {
+        "question": "Bạn có giao hàng quốc tế không?",
+        "answer": "Có, chúng tôi cung cấp dịch vụ vận chuyển quốc tế đến nhiều quốc gia. Phí vận chuyển và thời gian giao hàng khác nhau tùy thuộc vào điểm đến."
+    },
+    "How Long Will It Take To Get My Package?": {
+        "question": "Mất bao lâu để nhận được gói hàng của tôi?",
+        "answer": "Vận chuyển tiêu chuẩn thường mất 5-7 ngày làm việc, vận chuyển nhanh mất 2-3 ngày làm việc. Bạn sẽ nhận được thông tin theo dõi khi đơn hàng được gửi đi."
+    },
+    "What Payment Methods Are Accepted?": {
+        "question": "Những phương thức thanh toán nào được chấp nhận?",
+        "answer": "Chúng tôi chấp nhận thẻ tín dụng/thẻ ghi nợ (Visa, MasterCard, American Express), PayPal và các cổng thanh toán trực tuyến an toàn khác."
+    },
+    "Is Buying On-Line Safe?": {
+        "question": "Mua hàng trực tuyến có an toàn không?",
+        "answer": "Hoàn toàn an toàn. Chúng tôi sử dụng mã hóa SSL và các biện pháp bảo mật tiêu chuẩn ngành để bảo vệ thông tin cá nhân và thanh toán của bạn."
+    },
+    "How do I place an Order?": {
+        "question": "Làm thế nào để đặt hàng?",
+        "answer": "Duyệt sản phẩm, thêm vào giỏ hàng và tiến hành thanh toán. Nhập thông tin giao hàng và thanh toán để hoàn tất đơn hàng."
+    },
+    "How Can I Cancel Or Change My Order?": {
+        "question": "Làm thế nào để hủy hoặc thay đổi đơn hàng?",
+        "answer": "Vui lòng liên hệ đội ngũ hỗ trợ khách hàng càng sớm càng tốt. Chúng tôi sẽ cố gắng đáp ứng yêu cầu của bạn, nhưng một khi đơn hàng đã được xử lý, thay đổi có thể không khả thi."
+    },
+    "Do I need an account to place an order?": {
+        "question": "Tôi có cần tài khoản để đặt hàng không?",
+        "answer": "Không bắt buộc, bạn có thể mua hàng với tư cách khách. Tuy nhiên, việc tạo tài khoản giúp bạn theo dõi đơn hàng và lưu thông tin giao hàng cho lần mua tiếp theo."
+    },
+    "How Do I Track My Order?": {
+        "question": "Làm thế nào để theo dõi đơn hàng?",
+        "answer": "Khi đơn hàng được gửi đi, bạn sẽ nhận được email xác nhận kèm số theo dõi. Sử dụng số này trên trang web của chúng tôi hoặc trang web vận chuyển để theo dõi gói hàng."
+    },
+    "How Can I Return a Product?": {
+        "question": "Làm thế nào để trả lại sản phẩm?",
+        "answer": "Bạn có thể trả lại sản phẩm trong vòng 30 ngày kể từ ngày giao hàng. Liên hệ đội ngũ hỗ trợ với chi tiết đơn hàng, chúng tôi sẽ hướng dẫn bạn quy trình đổi trả."
+    }
+}

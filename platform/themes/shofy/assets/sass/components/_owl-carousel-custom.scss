@@ -1,0 +1,568 @@
+// Owl Carousel Custom Styles to match Swiper UI
+@use '../utils/breakpoints' as *;
+
+.tp-slider-height {
+    height: 516px;
+    max-height: 516px;
+
+    @media #{$sm, $xs} {
+        height: 816px;
+        max-height: 816px;
+    }
+}
+
+.tp-slider-height-2 {
+    min-height: 790px;
+}
+
+.tp-slider-height-3 {
+    min-height: 950px;
+
+    @media #{$lg} {
+        min-height: 850px;
+    }
+
+    @media #{$md} {
+        min-height: 750px;
+    }
+
+    @media #{$sm, $xs} {
+        min-height: 650px;
+    }
+}
+
+.tp-slider-height-4 {
+    min-height: 950px;
+
+    @media #{$lg} {
+        min-height: 850px;
+    }
+
+    @media #{$md} {
+        min-height: 750px;
+    }
+
+    @media #{$sm, $xs} {
+        min-height: 650px;
+    }
+}
+
+.tp-slider-height-5 {
+    min-height: 700px;
+
+    @media #{$md} {
+        min-height: 500px;
+    }
+
+    @media #{$sm, $xs} {
+        min-height: 400px;
+    }
+}
+
+// Prevent Cumulative Layout Shift before Owl Carousel initializes.
+// Owl's base CSS hides .owl-carousel (display: none) until the .owl-loaded
+// class is added by JS, and every slide carries a fixed .tp-slider-height*.
+// Without this rule the slider area has zero height at first paint, then jumps
+// to its full height once JS runs - producing a large CLS score. Force the
+// un-initialized carousel to render and show only the first slide so the
+// correct height is reserved up front; Owl then fills the same space on load.
+.tp-slider-active,
+.tp-slider-active-2,
+.tp-slider-active-3,
+.tp-slider-active-4,
+.tp-slider-active-5 {
+    &:not(.owl-loaded) {
+        display: block;
+        overflow: hidden;
+
+        // `!important` is required to beat Bootstrap's `.d-flex { display: flex !important }`
+        // utility that every `.tp-slider-item` carries; without it the extra slides stay
+        // visible and stack to full height before Owl initializes, collapsing on load (CLS).
+        > * + * {
+            display: none !important;
+        }
+    }
+}
+
+.tp-slider-active,
+.tp-slider-active-2,
+.tp-slider-active-3,
+.tp-slider-active-4,
+.tp-slider-active-5 {
+    position: relative;
+
+    .owl-stage-outer {
+        height: 100%;
+    }
+
+    .owl-stage {
+        height: 100%;
+        display: flex;
+    }
+
+    .owl-item {
+        height: 100%;
+
+        .tp-slider-item {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+
+            &.tp-slider-height {
+                height: 516px;
+                max-height: 516px;
+
+                @media #{$sm, $xs} {
+                    height: 816px;
+                    max-height: 816px;
+                }
+            }
+        }
+
+        .tp-slider-shape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+
+            &-1 {
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: -1;
+                mix-blend-mode: luminosity;
+                opacity: 0.1;
+            }
+
+            &-2 {
+                position: absolute;
+                bottom: 13%;
+                right: 28%;
+                z-index: -1;
+            }
+
+            &-3 {
+                position: absolute;
+                top: 8%;
+                right: 33%;
+                z-index: -1;
+            }
+
+            &-4 {
+                position: absolute;
+                top: 30%;
+                left: 6%;
+                z-index: -1;
+            }
+        }
+    }
+
+    .owl-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        z-index: 10;
+        pointer-events: none;
+
+        button {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease-out 0s;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0;
+
+            &:hover {
+                background: var(--tp-common-white);
+                border-color: transparent;
+                box-shadow: 0px 0px 60px 0px rgba(2, 2, 5, 0.10);
+            }
+
+            svg {
+                width: 8px;
+                height: 14px;
+                color: var(--tp-common-black);
+                transition: all 0.3s ease-out 0s;
+            }
+
+            &.owl-prev {
+                left: 50px;
+            }
+
+            &.owl-next {
+                right: 50px;
+            }
+
+            @media #{$lg} {
+                display: none;
+            }
+        }
+    }
+
+    @media #{$xl} {
+        .owl-nav {
+            display: block;
+        }
+    }
+
+    .owl-dots {
+        position: absolute;
+        bottom: 34px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        // The dot button keeps a 24x24 touch target (WCAG 2.2 / Lighthouse
+        // target-size minimum) while the visible 10x10 dot is drawn via ::after,
+        // so the control stays small visually but easy to tap.
+        .owl-dot {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 0;
+            border-radius: 50%;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            font-size: 0;
+            line-height: 0;
+
+            &::after {
+                content: '';
+                width: 10px;
+                height: 10px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                transition: all 0.3s ease-out 0s;
+            }
+
+            &:hover::after {
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            &.active::after {
+                background: var(--tp-common-white);
+            }
+        }
+    }
+
+    &.is-light {
+        .owl-dots {
+            .owl-dot {
+                &::after {
+                    background: rgba(1, 15, 28, 0.2);
+                }
+
+                &:hover::after {
+                    background: rgba(1, 15, 28, 0.3);
+                }
+
+                &.active::after {
+                    background: var(--tp-common-black);
+                }
+            }
+        }
+    }
+}
+
+.tp-slider-active-2 {
+    .owl-dots {
+        bottom: 30px;
+    }
+}
+
+.tp-slider-active-3 {
+    .owl-nav {
+        button {
+            background: var(--tp-common-white);
+            box-shadow: 0 0 60px 0 rgba(2, 2, 5, 0.10);
+
+            svg {
+                width: 16px;
+                height: 14px;
+            }
+
+            &.owl-prev {
+                left: 30px;
+            }
+
+            &.owl-next {
+                right: 30px;
+            }
+
+            // Show on tablets
+            @media #{$md} {
+                display: flex;
+            }
+        }
+    }
+
+    .owl-dots {
+        bottom: 30px;
+
+        @media #{$sm} {
+            display: none;
+        }
+    }
+}
+
+.tp-slider-active-4 {
+    .owl-nav {
+        display: none;
+    }
+}
+
+.tp-slider-active-5 {
+    .owl-nav {
+        button {
+            &.owl-prev {
+                left: 30px;
+            }
+
+            &.owl-next {
+                right: 30px;
+            }
+        }
+    }
+}
+
+.owl-carousel {
+    .owl-stage-outer {
+        overflow: hidden;
+    }
+
+    .owl-item {
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+    }
+
+    .owl-nav.disabled,
+    .owl-dots.disabled {
+        display: none;
+    }
+}
+
+.owl-carousel .owl-item {
+    .tp-slider-thumb img {
+        display: block;
+        max-height: 100%;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .tp-slider-shape img {
+        width: auto !important;
+        height: auto !important;
+        max-width: none !important;
+    }
+}
+
+.tp-slider-no-animation {
+    .owl-animated {
+        animation-duration: 0s !important;
+        -webkit-animation-duration: 0s !important;
+    }
+}
+
+@mixin animation-name($name: fadeInUp, $fill: both) {
+    animation-name: $name;
+    animation-fill-mode: $fill;
+}
+
+@mixin animation-control($time: 0.3s, $duration: 1s) {
+    animation-delay: $time;
+    animation-duration: $duration;
+}
+
+.tp-slider-active,
+.tp-slider-active-2,
+.tp-slider-active-3,
+.tp-slider-active-4,
+.tp-slider-active-5 {
+    .owl-item {
+        .tp-slider-title,
+        .tp-slider-content > span,
+        .tp-slider-content p,
+        .tp-slider-btn a,
+        .tp-slider-thumb img {
+            opacity: 0;
+            animation: none;
+        }
+
+        &.active {
+            .tp-slider-title {
+                @include animation-name();
+                @include animation-control(0.5s);
+                opacity: 1;
+            }
+
+            .tp-slider-content {
+                & > span {
+                    @include animation-name();
+                    @include animation-control(0.3s);
+                    opacity: 1;
+                }
+
+                & p {
+                    @include animation-name();
+                    @include animation-control(0.7s);
+                    opacity: 1;
+                }
+            }
+
+            .tp-slider-btn a {
+                @include animation-name();
+                @include animation-control(0.9s);
+                opacity: 1;
+            }
+
+            .tp-slider-thumb img {
+                @include animation-name(fadeInRight);
+                @include animation-control(0.9s);
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.tp-slider-active-2 {
+    .owl-item {
+        .tp-slider-title-2,
+        .tp-slider-content-2 > span,
+        .tp-slider-content-2 p,
+        .tp-slider-btn-2 a,
+        .tp-slider-thumb-2 img {
+            opacity: 0;
+            animation: none;
+        }
+
+        &.active {
+            .tp-slider-title-2 {
+                @include animation-name();
+                @include animation-control(0.3s);
+                opacity: 1;
+            }
+
+            .tp-slider-content-2 {
+                & > span {
+                    @include animation-name();
+                    @include animation-control(0.1s);
+                    opacity: 1;
+                }
+            }
+
+            .tp-slider-btn-2 a {
+                @include animation-name();
+                @include animation-control(0.5s);
+                opacity: 1;
+            }
+
+            .tp-slider-thumb-2 img {
+                @include animation-name(fadeInRight);
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.tp-slider-active-3 {
+    .owl-item {
+        .tp-slider-title-3,
+        .tp-slider-content-3 > span,
+        .tp-slider-content-3 p,
+        .tp-slider-btn-3 a,
+        .tp-slider-feature-3 {
+            opacity: 0;
+            animation: none;
+        }
+
+        &.active {
+            .tp-slider-title-3 {
+                @include animation-name();
+                @include animation-control(0.3s);
+                opacity: 1;
+            }
+
+            .tp-slider-content-3 {
+                & > span {
+                    @include animation-name();
+                    @include animation-control(0.1s);
+                    opacity: 1;
+                }
+            }
+
+            .tp-slider-btn-3 a {
+                @include animation-name();
+                @include animation-control(0.7s);
+                opacity: 1;
+            }
+
+            .tp-slider-feature-3 {
+                @include animation-name();
+                @include animation-control(0.5s);
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.tp-slider-active,
+.tp-slider-active-2,
+.tp-slider-active-3,
+.tp-slider-active-4,
+.tp-slider-active-5 {
+    .tp-slider-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .tp-slider-thumb {
+        position: relative;
+        z-index: 1;
+
+        img {
+            max-height: 100%;
+            width: auto !important;
+            height: auto !important;
+        }
+    }
+
+    .tp-slider-thumb-2,
+    .tp-slider-thumb-3,
+    .tp-slider-thumb-4,
+    .tp-slider-thumb-5 {
+        img {
+            max-height: 100%;
+            width: auto !important;
+            height: auto !important;
+        }
+    }
+}
+
+.owl-carousel {
+    .owl-item {
+        .tp-slider-thumb-2-shape-1, .tp-slider-2-shape-1 {
+            width: auto;
+        }
+    }
+}

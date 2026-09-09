@@ -1,0 +1,81 @@
+.report-chart-content {
+    .rp-card-chart {
+        min-height: 200px;
+    }
+
+    .rp-card-information {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+// Widget configuration modal
+.widget-config-item {
+    border: 1px solid var(--bb-border-color);
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        border-color: var(--bb-primary);
+        box-shadow: 0 2px 4px rgba(var(--bb-primary-rgb), 0.1);
+    }
+
+    .form-check-input:checked ~ .flex-fill {
+        opacity: 1;
+    }
+
+    .form-check-input:not(:checked) ~ .flex-fill {
+        opacity: 0.6;
+    }
+
+    label {
+        cursor: pointer;
+    }
+}
+
+.widget-category-header {
+    background: var(--bb-bg-surface-secondary);
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.widget-grid {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#widget-config-modal .modal-dialog {
+    max-width: 900px;
+}
+
+.icon-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+// Dark mode for statistics cards icon containers
+[data-bs-theme='dark'] {
+    .bg-yellow-opacity,
+    .bg-blue-opacity,
+    .bg-green-opacity,
+    .bg-red-pink-opacity {
+        .block-left {
+            span.bg-white {
+                background-color: rgba(255, 255, 255, 0.15) !important;
+                color: var(--bb-body-color);
+            }
+        }
+    }
+}

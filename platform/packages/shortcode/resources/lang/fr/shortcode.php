@@ -1,0 +1,35 @@
+<?php
+
+return [
+    'shortcode' => 'Petit code',
+    'use' => 'Utiliser',
+    'ui-blocks' => 'Blocs d\'interface utilisateur',
+    'search' => 'Recherche...',
+    'no_shortcode_found' => 'Aucun shortcode trouvé.',
+    'shortcode_not_available' => 'Le shortcode ":name" n\'est pas disponible ou a été supprimé.',
+    'cache_suggestion' => [
+        'title' => 'Suggestion de performance',
+        'description' => 'Vous pouvez améliorer les performances de votre site en activant la mise en cache des shortcodes.',
+        'benefits' => 'Cela peut réduire considérablement les temps de chargement des pages en mettant en cache les shortcodes rendus.',
+        'enable_button' => 'Activer la mise en cache des shortcodes',
+        'dismiss_button' => 'Ignorer pendant une semaine',
+    ],
+    'form' => [
+        'enable_lazy_loading' => 'Enable lazy loading',
+        'no' => 'No',
+        'yes' => 'Yes',
+        'lazy_loading_helper' => 'When enabled, shortcode content will be loaded sequentially as the page loads, rather than all at once. This can help improve page load times.',
+        'enable_caching' => 'Enable caching',
+        'caching_helper' => 'When enabled, this shortcode content will be cached to improve performance. Disable for dynamic content that changes frequently.',
+        'cache_disabled_notice' => 'Due to UI issues, cache for this UI block is disabled via code. This shortcode will not be cached even if caching is enabled.',
+        'lazy_loading_disabled_notice' => 'Lazy loading for this UI block is disabled via code. This shortcode will not use lazy loading even if enabled.',
+        'custom_css' => 'Custom CSS (optional)',
+        'custom_css_helper' => 'Please enter your CSS code on a single line. It won\'t work if it has break line. Some special characters may be escaped.',
+        'background_color' => 'Background color (optional)',
+        'text_color' => 'Text color (optional)',
+        'text_color_helper' => 'This color may be overridden by the theme. If it doesn\'t work, please add your CSS in Appearance -> Custom CSS.',
+        'background_image' => 'Background image (optional)',
+        'quantity' => 'Quantity',
+        'tab_number' => 'Tab #:number',
+    ],
+];

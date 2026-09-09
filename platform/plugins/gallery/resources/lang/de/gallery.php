@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'create' => 'Neue Galerie erstellen',
+    'galleries' => 'Galerien',
+    'item' => 'Galerie-Element',
+    'select_image' => 'Bilder auswählen',
+    'reset' => 'Galerie zurücksetzen',
+    'update_photo_description' => 'Fotobeschreibung aktualisieren',
+    'update_photo_description_placeholder' => 'Fotobeschreibung...',
+    'delete_photo' => 'Dieses Foto löschen',
+    'gallery_box' => 'Galeriebilder',
+    'by' => 'Von',
+    'menu_name' => 'Galerien',
+    'gallery_images' => 'Galeriebilder',
+    'add_gallery_short_code' => 'Galerie hinzufügen',
+    'shortcode_name' => 'Galeriebilder',
+    'limit_display' => 'Anzahl der Anzeigen begrenzen',
+    'edit_this_gallery' => 'Diese Galerie bearbeiten',
+    'galleries_page' => 'Galerieseite',
+    'by_name' => 'Von :name',
+    'title' => 'Titel',
+    'limit' => 'Limit',
+    'limit_helper' => 'Anzahl der anzuzeigenden Galerien. ',
+];

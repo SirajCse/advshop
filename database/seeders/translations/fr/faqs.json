@@ -1,0 +1,42 @@
+{
+    "What Shipping Methods Are Available?": {
+        "question": "Quelles méthodes de livraison sont disponibles ?",
+        "answer": "Nous proposons plusieurs méthodes de livraison, dont la livraison standard, la livraison express et la livraison le jour même dans certaines zones."
+    },
+    "Do You Ship Internationally?": {
+        "question": "Livrez-vous à l'international ?",
+        "answer": "Oui, nous livrons dans de nombreux pays à travers le monde. Les frais et délais de livraison varient selon la destination."
+    },
+    "How Long Will It Take To Get My Package?": {
+        "question": "Combien de temps faudra-t-il pour recevoir mon colis ?",
+        "answer": "La livraison standard prend généralement 5 à 7 jours ouvrables, la livraison express 2 à 3 jours ouvrables. Vous recevrez un numéro de suivi dès l'expédition de votre commande."
+    },
+    "What Payment Methods Are Accepted?": {
+        "question": "Quels modes de paiement sont acceptés ?",
+        "answer": "Nous acceptons les cartes de crédit/débit (Visa, MasterCard, American Express), PayPal et d'autres passerelles de paiement en ligne sécurisées."
+    },
+    "Is Buying On-Line Safe?": {
+        "question": "Est-il sûr d'acheter en ligne ?",
+        "answer": "Absolument. Nous utilisons le cryptage SSL et des mesures de sécurité conformes aux normes de l'industrie pour protéger vos informations personnelles et de paiement."
+    },
+    "How do I place an Order?": {
+        "question": "Comment passer une commande ?",
+        "answer": "Parcourez les produits, ajoutez-les au panier et passez à la caisse. Entrez vos informations de livraison et de paiement pour finaliser votre commande."
+    },
+    "How Can I Cancel Or Change My Order?": {
+        "question": "Comment annuler ou modifier ma commande ?",
+        "answer": "Veuillez contacter notre service client dès que possible. Nous ferons de notre mieux pour répondre à votre demande, mais une fois la commande traitée, les modifications peuvent ne pas être possibles."
+    },
+    "Do I need an account to place an order?": {
+        "question": "Ai-je besoin d'un compte pour passer une commande ?",
+        "answer": "Ce n'est pas obligatoire, vous pouvez acheter en tant qu'invité. Cependant, créer un compte vous permet de suivre vos commandes et de sauvegarder vos informations de livraison."
+    },
+    "How Do I Track My Order?": {
+        "question": "Comment suivre ma commande ?",
+        "answer": "Dès l'expédition de votre commande, vous recevrez un e-mail avec un numéro de suivi. Utilisez ce numéro sur notre site ou celui du transporteur pour suivre votre colis."
+    },
+    "How Can I Return a Product?": {
+        "question": "Comment retourner un produit ?",
+        "answer": "Vous pouvez retourner un produit dans les 30 jours suivant la livraison. Contactez notre équipe support avec les détails de votre commande et nous vous guiderons dans le processus de retour."
+    }
+}

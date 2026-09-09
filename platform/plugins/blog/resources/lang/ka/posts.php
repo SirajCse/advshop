@@ -1,0 +1,67 @@
+<?php
+
+return [
+    'menu_name' => 'პოსტები',
+    'post' => 'პოსტები',
+    'create' => 'შექმენით ახალი პოსტი',
+    'form' => [
+        'name' => 'სახელი',
+        'name_placeholder' => 'პოსტის სახელი (მაქსიმუმ :c სიმბოლო)',
+        'description' => 'აღწერა',
+        'description_placeholder' => 'პოსტის მოკლე აღწერა (მაქსიმუმ :c სიმბოლო)',
+        'categories' => 'კატეგორიები',
+        'tags' => 'ტეგები',
+        'tags_placeholder' => 'ტეგები',
+        'content' => 'შინაარსი',
+        'is_featured' => 'გამოირჩეული პოსტი',
+        'note' => 'შენიშვნის შინაარსი',
+        'format_type' => 'ფორმატი',
+
+    ],
+    'cannot_delete' => 'პოსტის წაშლა ვერ მოხერხდა',
+    'post_deleted' => 'პოსტი წაშლილია',
+    'posts' => 'პოსტები',
+    'edit_this_post' => 'ამ პოსტის რედაქტირება',
+    'no_new_post_now' => 'ამჟამად ახალი პოსტი არ არის!',
+    'widget_posts_recent' => 'ბოლო პოსტები',
+    'categories' => 'კატეგორიები',
+    'category' => 'კატეგორია',
+    'author' => 'ავტორი',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
+    'is_featured' => 'გამოირჩეული?',
+    'export' => [
+        'description' => 'პოსტების ექსპორტი CSV/Excel ფაილში.',
+        'total' => 'სულ პოსტები',
+        'limit' => 'ლიმიტი',
+        'limit_placeholder' => 'დატოვეთ ცარიელი ყველას ექსპორტისთვის',
+        'all_status' => 'ყველა სტატუსი',
+        'all_featured' => 'ყველა',
+        'all_categories' => 'ყველა კატეგორია',
+        'start_date' => 'საწყისი თარიღი',
+        'start_date_placeholder' => 'საწყისი თარიღი',
+        'end_date' => 'საბოლოო თარიღი',
+        'end_date_placeholder' => 'საბოლოო თარიღი',
+
+    ],
+    'import' => [
+        'description' => 'პოსტების იმპორტი CSV/Excel ფაილიდან.',
+        'done_message' => ':created პოსტი შეიქმნა და :updated პოსტი განახლდა.',
+        'rules' => [
+            'nullable_string_max' => ':attribute ველი იღებს სტრიქონის მნიშვნელობას :max სიმბოლომდე ან შეიძლება დარჩეს ცარიელი.',
+            'sometimes_array' => ':attribute ველი იღებს მასივის მნიშვნელობას ან შეიძლება დარჩეს ცარიელი.',
+            'in' => ':attribute უნდა იყოს ერთ-ერთი შემდეგი მნიშვნელობებიდან: :values.',
+            'nullable_string' => ':attribute ველი იღებს სტრიქონის მნიშვნელობას ან შეიძლება დარჩეს ცარიელი.',
+            'nullable_string_max_in' => ':attribute ველი შეიძლება დარჩეს ცარიელი, ან უნდა იყოს სტრიქონი მაქსიმალური სიგრძით :max სიმბოლო, თუ მოწოდებულია და უნდა იყოს ერთ-ერთი შემდეგი მნიშვნელობებიდან: :values.',
+            'faq_schema_config' => 'FAQ სქემის კონფიგურაცია უნდა იყოს მოქმედი სტრიქონი, თუ მოწოდებულია.',
+            'faq_ids' => 'FAQ ID-ები უნდა იყოს მოქმედი მასივი, თუ მოწოდებულია.',
+
+        ],
+
+    ],
+    'post_translations' => 'პოსტის თარგმანები',
+    'export_post_translations' => 'პოსტის თარგმანების ექსპორტი',
+    'import_description' => 'თარგმანების იმპორტი :name-სთვის CSV/Excel ფაილიდან.',
+    'export_description' => 'თარგმანების ექსპორტი :name-სთვის CSV/Excel ფაილში.',
+    'views' => 'ნახვები',
+];

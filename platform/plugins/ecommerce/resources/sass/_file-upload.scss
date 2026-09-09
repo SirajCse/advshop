@@ -1,0 +1,170 @@
+.bb-file-upload-wrapper {
+    display: flex;
+    gap: 0.75rem;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+
+    .bb-file-input {
+        display: none;
+    }
+
+    .bb-file-label {
+        flex: 1;
+        display: flex !important;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        background-color: #f8f9fa;
+        border: 2px dashed #dee2e6;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        min-height: 56px;
+        margin-bottom: 0;
+
+        @media (max-width: 575px) {
+            flex-direction: column;
+            text-align: center;
+            padding: 1.25rem 1rem;
+            gap: 0.75rem;
+        }
+
+        &:hover {
+            background-color: rgba(var(--primary-rgb), 0.05);
+            border-color: var(--primary-color);
+
+            .bb-file-icon {
+                color: var(--primary-color);
+                transform: translateY(-2px);
+            }
+
+            .bb-file-button {
+                background-color: var(--primary-color);
+                color: #fff;
+            }
+        }
+
+        .bb-file-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            transition: all 0.3s ease;
+
+            svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            @media (max-width: 575px) {
+                width: 40px;
+                height: 40px;
+
+                svg {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
+
+        .bb-file-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            min-width: 0;
+
+            @media (max-width: 575px) {
+                flex: none;
+                width: 100%;
+            }
+
+            .bb-file-placeholder {
+                color: #6c757d;
+                font-size: 0.875rem;
+            }
+
+            .bb-file-name {
+                font-weight: 500;
+                color: #212529;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: none;
+
+                @media (max-width: 575px) {
+                    white-space: normal;
+                    word-break: break-word;
+                }
+            }
+        }
+
+        .bb-file-button {
+            flex-shrink: 0;
+            padding: 0.5rem 1rem;
+            background-color: #e9ecef;
+            color: #495057;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            text-align: center;
+
+            @media (max-width: 575px) {
+                width: 100%;
+                padding: 0.625rem 1rem;
+            }
+        }
+
+        &.has-file {
+            border-color: var(--primary-color);
+            background-color: rgba(var(--primary-rgb), 0.05);
+
+            .bb-file-icon {
+                color: var(--primary-color);
+            }
+
+            .bb-file-placeholder {
+                display: none;
+            }
+
+            .bb-file-name {
+                display: block;
+            }
+        }
+    }
+
+    .bb-upload-submit {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        white-space: nowrap;
+
+        @media (max-width: 767px) {
+            width: 100%;
+            justify-content: center;
+        }
+
+        svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+    }
+}
+
+.bb-payment-proof-card-upload {
+    .bb-file-upload-wrapper {
+        margin-bottom: 0.5rem;
+    }
+}

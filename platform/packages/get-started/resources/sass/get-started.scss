@@ -1,0 +1,66 @@
+.get-started-modal,
+.close-get-started-modal {
+    .get-start-icon {
+        --bb-icon-size: 6rem;
+        stroke-width: 1;
+    }
+}
+
+.get-started-modal {
+    .get-start-wrapper {
+        ul {
+            padding-left: 10px;
+        }
+
+        h4 {
+            font-size: 24px;
+        }
+
+        .select-colors-fonts {
+            margin-top: 10px;
+
+            h6 {
+                font-size: 16px;
+                margin-top: 20px;
+                padding-bottom: 5px;
+                border-bottom: var(--bb-border-width) var(--bb-border-style) var(--bb-border-color);
+            }
+        }
+    }
+
+    // Intro / outro screens (welcome, success) stay vertically centered.
+    .get-start-intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 420px;
+    }
+
+    // Progress stepper at the top of configuration steps.
+    // core.css ships a second `.steps` (form-wizard variant) that adds a
+    // left border + padding/margin; reset those so only the horizontal
+    // numbered stepper styling applies.
+    .get-started-steps {
+        margin: 0 0 1.5rem;
+        padding-left: 0;
+        border-left: 0;
+    }
+
+    // Brand assets (logo/favicon) should show in full inside the square
+    // preview instead of being cropped by the default `object-fit: cover`.
+    .preview-image-wrapper {
+        background-color: var(--bb-light, #f6f7f9);
+
+        .preview-image-inner .preview-image {
+            object-fit: contain;
+            padding: 8px;
+        }
+    }
+}
+
+// The core alert component wraps content in `.d-flex.gap-1` (when an icon is
+// shown) without `w-100`, so the inner full-width row can't stretch. Force the
+// wrapper full-width so "Don't show again" aligns to the end of the notice.
+.resume-setup-wizard-wrapper .d-flex.gap-1 {
+    width: 100%;
+}

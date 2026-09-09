@@ -1,0 +1,888 @@
+// Mobile Coupon Styles
+.checkout__coupon-mobile {
+    margin-bottom: 24px;
+}
+
+// Mobile Coupon Trigger Button
+.mobile-coupon-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 56px;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+
+    &:hover {
+        border-color: var(--bs-primary);
+        background-color: rgba(var(--bs-primary-rgb), 0.03);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var(--bs-primary);
+        box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.15);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    // Applied coupon state
+    &.has-coupon {
+        border-color: #28a745;
+        background: linear-gradient(to right, rgba(40, 167, 69, 0.04), #fff);
+
+        &:hover {
+            background: linear-gradient(to right, rgba(40, 167, 69, 0.08), #fff);
+        }
+    }
+}
+
+.mobile-coupon-trigger__left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+
+    img {
+        flex-shrink: 0;
+    }
+}
+
+.mobile-coupon-trigger__text {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+.mobile-coupon-trigger__applied {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+
+    .discount-value {
+        font-size: 16px;
+        font-weight: 600;
+        color: #28a745;
+        line-height: 1.2;
+    }
+
+    .discount-code {
+        font-size: 12px;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+}
+
+.mobile-coupon-trigger__right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+// Count badge (default state)
+.coupon-btn-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 11px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--bs-primary);
+}
+
+// Applied checkmark badge
+.coupon-btn-applied {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #28a745;
+    border-radius: 50%;
+    color: #fff;
+    animation: badge-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chevron-icon {
+    color: #adb5bd;
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes badge-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+    60% {
+        transform: scale(1.15);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+// Ensure toastr/notifications appear above offcanvas
+.toast-container,
+#toast-container,
+.toast-top-right,
+.toast-top-left,
+.toast-bottom-right,
+.toast-bottom-left,
+.toast-top-center,
+.toast-bottom-center,
+.toast-top-full-width,
+.toast-bottom-full-width,
+[class*="toast-"] {
+    z-index: 999999 !important;
+}
+
+// Also target Botble's notification system
+.notifications-wrapper,
+.alert-notification {
+    z-index: 999999 !important;
+}
+
+// Mobile Coupon Bottom Sheet
+.mobile-coupon-sheet.offcanvas-bottom {
+    height: 85vh !important;
+    max-height: 85vh !important;
+    border-radius: 16px 16px 0 0;
+    transition: transform 350ms cubic-bezier(0.32, 1, 0.23, 1);
+    overscroll-behavior: contain;
+
+    // Drag handle
+    .mobile-coupon-sheet__drag-handle {
+        display: flex;
+        justify-content: center;
+        padding: 12px 0 4px;
+        cursor: grab;
+
+        span {
+            width: 40px;
+            height: 4px;
+            background-color: #dee2e6;
+            border-radius: 2px;
+        }
+    }
+
+    .offcanvas-header {
+        padding: 8px 20px 12px;
+
+        .offcanvas-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .offcanvas-body {
+        padding: 8px 20px;
+        flex: 1 1 auto;
+        max-height: calc(85vh - 160px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .offcanvas-footer {
+        position: sticky;
+        bottom: 0;
+        background: #fff;
+        padding: 12px 20px 24px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+            padding: 12px 16px;
+        }
+    }
+
+    // Safe area for notched devices
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+        .offcanvas-footer {
+            padding-bottom: calc(24px + env(safe-area-inset-bottom));
+        }
+    }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .mobile-coupon-sheet.offcanvas-bottom {
+        transition: none;
+    }
+
+    .mobile-coupon-item {
+        transition: none !important;
+
+        &.touch-active {
+            transform: none;
+        }
+
+        &.active {
+            animation: none;
+        }
+    }
+}
+
+// Dragging state - disable transitions
+.mobile-coupon-sheet.dragging {
+    transition: none !important;
+    will-change: transform;
+
+    * {
+        user-select: none;
+    }
+}
+
+// Grab cursor on drag handle
+.mobile-coupon-sheet__drag-handle {
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+// Mobile Coupon Items
+.mobile-coupon-item {
+    border: 1px solid #e9ecef !important;
+    transition: all 0.2s ease;
+    background-color: #fff;
+    min-height: 80px;
+    touch-action: manipulation;
+    user-select: none;
+    cursor: pointer;
+
+    // Touch active state
+    &.touch-active {
+        background-color: rgba(0, 123, 255, 0.05);
+        transform: scale(0.98);
+    }
+
+    &:hover {
+        border-color: #007bff !important;
+        box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+        transform: translateY(-1px);
+    }
+
+    // Selection pulse animation
+    &.active {
+        animation: selectPulse 0.3s ease-out;
+    }
+}
+
+@keyframes selectPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(var(--bs-primary-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
+    }
+}
+
+// Active state - applied coupon highlighting (matches desktop)
+.mobile-coupon-item.active {
+    background-color: var(--bs-primary);
+    color: #ffffff;
+    border-color: var(--bs-primary) !important;
+    box-shadow: 0 2px 12px rgba(0, 123, 255, 0.15);
+
+    &:hover {
+        border-color: var(--bs-primary) !important;
+        background-color: var(--bs-primary);
+        transform: translateY(-1px);
+    }
+
+    .mobile-coupon-icon {
+        background-color: var(--bs-primary) !important;
+        filter: brightness(85%);
+
+        svg {
+            color: #ffffff !important;
+        }
+    }
+
+    .mobile-coupon-value h6 {
+        color: #ffffff !important;
+    }
+
+    .mobile-coupon-description small {
+        color: #ffffff !important;
+    }
+
+    .mobile-coupon-code .badge {
+        background-color: var(--bs-primary) !important;
+        filter: brightness(85%);
+        color: #ffffff !important;
+        border-color: var(--bs-primary) !important;
+    }
+
+    // Applied checkmark indicator
+    .position-absolute {
+        z-index: 10;
+
+        .bg-success {
+            box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+
+            svg {
+                color: #fff !important;
+            }
+        }
+    }
+}
+
+// Mobile coupon item child elements
+.mobile-coupon-item {
+    .mobile-coupon-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .mobile-coupon-value {
+        h6 {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--bs-primary);
+            line-height: 1.3;
+        }
+
+        small {
+            font-size: 0.75rem;
+            font-weight: normal;
+            font-style: italic;
+        }
+    }
+
+    .mobile-coupon-description {
+        small {
+            font-size: 13px;
+            color: #4d4d4d;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            transition: 0.2s all;
+        }
+    }
+
+    .mobile-coupon-code {
+        .badge {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            background: rgb(239, 239, 239);
+            color: #000;
+            border: none;
+        }
+
+        .btn {
+            background: var(--bs-primary);
+            color: #ffffff;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: 0.2s all;
+            box-sizing: border-box;
+
+            &.remove-coupon-code {
+                background: #ffffff;
+                color: var(--bs-primary);
+                border: 1px solid var(--bs-primary);
+            }
+        }
+    }
+
+    // Button styling for active state
+    &.active .mobile-coupon-code .btn {
+        background: #ffffff;
+        color: var(--bs-primary);
+        border: 1px solid var(--bs-primary);
+    }
+}
+
+// Loading state for buttons
+.mobile-coupon-item .btn {
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .btn-spinner {
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 575.98px) {
+    .mobile-coupon-item {
+        margin-bottom: 12px !important;
+        padding: 16px !important;
+    }
+
+    .mobile-coupon-trigger {
+        min-height: 60px;
+        padding: 14px 16px;
+    }
+
+    .mobile-coupon-trigger__text {
+        font-size: 16px; // Prevent iOS zoom
+    }
+
+    .mobile-coupon-trigger__applied .discount-value {
+        font-size: 17px;
+    }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .mobile-coupon-trigger {
+        transition: none;
+
+        &:active {
+            transform: none;
+        }
+    }
+
+    .coupon-btn-applied {
+        animation: none;
+    }
+}
+
+// RTL Support for trigger button
+[dir="rtl"] {
+    .mobile-coupon-trigger__left {
+        flex-direction: row-reverse;
+    }
+
+    .mobile-coupon-trigger__applied {
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .chevron-icon {
+        transform: scaleX(-1);
+    }
+}
+
+// Accessibility improvements
+.mobile-coupon-item {
+    &:focus-within {
+        outline: 2px solid #007bff;
+        outline-offset: 2px;
+    }
+}
+
+// Smooth scrolling for bottom sheet body
+.mobile-coupon-sheet .offcanvas-body {
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 3px;
+
+        &:hover {
+            background: #a8a8a8;
+        }
+    }
+}
+
+// Mobile coupon entry input - matches coupon item card style
+.mobile-coupon-entry {
+    &__card,
+    &__applied {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    &__card {
+        &:focus-within {
+            border-color: var(--bs-primary);
+            box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.1);
+        }
+    }
+
+    &__applied {
+        background: rgba(40, 167, 69, 0.05);
+        border-color: #28a745;
+    }
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(var(--bs-primary-rgb), 0.1);
+        border-radius: 8px;
+        flex-shrink: 0;
+
+        svg {
+            width: 20px;
+            height: 20px;
+            color: var(--bs-primary);
+        }
+
+        &--success {
+            background: rgba(40, 167, 69, 0.15);
+
+            svg {
+                color: #28a745;
+            }
+        }
+    }
+
+    &__input {
+        flex: 1;
+        min-width: 0;
+
+        .form-control {
+            border: none;
+            padding: 8px 0;
+            font-size: 15px;
+            background: transparent;
+            height: auto;
+
+            &:focus {
+                box-shadow: none;
+                outline: none;
+            }
+
+            &::placeholder {
+                color: #adb5bd;
+            }
+        }
+    }
+
+    &__code {
+        flex: 1;
+
+        .badge {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 6px 12px;
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            letter-spacing: 0.5px;
+        }
+    }
+
+    .btn {
+        flex-shrink: 0;
+        background: var(--bs-primary);
+        color: #ffffff;
+        border: none;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.8em;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s all;
+
+        &:hover {
+            filter: brightness(90%);
+            color: #ffffff;
+        }
+    }
+}
+
+// Mobile coupon divider
+.mobile-coupon-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    span {
+        padding: 0 12px;
+        color: #6c757d;
+        font-size: 13px;
+    }
+}
+
+.checkout-discount-section,
+.coupon-wrapper {
+    transition: all 0.3s ease;
+}
+
+// Mobile coupon section visibility
+#mobile-coupon-section {
+    transition: all 0.3s ease;
+
+    &.hidden {
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+    }
+}
+
+// Applied coupon indicator
+#mobile-applied-coupon {
+    transition: all 0.3s ease;
+
+    &.hidden {
+        opacity: 0;
+        transform: translateY(-5px);
+        max-height: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+// Ensure manual coupon entry is properly spaced on mobile
+@media (max-width: 767.98px) {
+    .checkout-discount-section {
+        margin-top: 20px;
+
+        .btn-open-coupon-form {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            color: #495057;
+            text-decoration: none;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background-color: #e9ecef;
+                border-color: #adb5bd;
+                color: #495057;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .coupon-wrapper {
+        margin-top: 15px;
+    }
+}
+
+// Mobile Sticky Checkout Footer
+.mobile-checkout-footer {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    // Hide original footer actions on mobile (will be shown in sticky footer)
+    .checkout-form .footer-actions-wrapper-mobile-hidden {
+        display: none !important;
+    }
+
+    // Mobile sticky checkout footer
+    .mobile-checkout-footer {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 12px 16px;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 1040;
+        border-top: 1px solid #e9ecef;
+
+        // Safe area for notched devices
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        }
+
+        .mobile-checkout-footer__terms {
+            margin-bottom: 12px;
+
+            .form-check {
+                margin-bottom: 0;
+                padding-left: 0;
+                display: flex;
+                align-items: flex-start;
+                gap: 8px;
+
+                .form-check-input {
+                    margin-top: 2px;
+                    margin-left: 0;
+                    flex-shrink: 0;
+                }
+
+                .form-check-label a {
+                    color: var(--bs-primary);
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .mobile-checkout-footer__actions {
+            display: flex;
+            gap: 8px;
+            align-items: stretch;
+
+            // Secondary buttons (Cart & Coupon) - same width
+            .mobile-checkout-footer__btn-secondary {
+                flex-shrink: 0;
+                width: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 48px;
+                background-color: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 8px;
+                color: #495057;
+                text-decoration: none;
+                transition: all 0.2s ease;
+                position: relative;
+
+                &:hover {
+                    background-color: #e9ecef;
+                    border-color: #adb5bd;
+                    color: #495057;
+                    text-decoration: none;
+                }
+
+                &:active {
+                    transform: scale(0.98);
+                }
+
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                img {
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+
+            // Coupon button specific styles
+            .mobile-checkout-footer__coupon-btn {
+                .coupon-count {
+                    position: absolute;
+                    top: 4px;
+                    right: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 16px;
+                    height: 16px;
+                    padding: 0 4px;
+                    background: var(--bs-primary);
+                    border-radius: 8px;
+                    font-size: 10px;
+                    font-weight: 600;
+                    color: #fff;
+                }
+
+                .coupon-applied-icon {
+                    position: absolute;
+                    top: 2px;
+                    right: 2px;
+                    width: 14px;
+                    height: 14px;
+                    color: #fff;
+                    background: #28a745;
+                    border-radius: 50%;
+                    padding: 2px;
+                }
+
+                &.has-coupon {
+                    border-color: #28a745;
+                    background: rgba(40, 167, 69, 0.08);
+                    color: #28a745;
+                }
+            }
+
+            // Checkout button - takes remaining space
+            .mobile-checkout-btn {
+                flex: 1;
+                min-height: 48px;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    // Add padding to checkout form to prevent content from being hidden behind sticky footer
+    .checkout-form {
+        padding-bottom: 180px;
+    }
+
+    // Acceptance message inside sticky footer
+    .mobile-checkout-footer__acceptance {
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        font-size: 12px;
+        line-height: 1.4;
+        color: #6c757d;
+    }
+}
+
+// Reduced motion
+@media (max-width: 767.98px) and (prefers-reduced-motion: reduce) {
+    .mobile-checkout-footer {
+        transition: none;
+    }
+}

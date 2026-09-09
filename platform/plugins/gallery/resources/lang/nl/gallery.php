@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'create' => 'Nieuwe galerij maken',
+    'galleries' => 'Galerijen',
+    'item' => 'Galerij-item',
+    'select_image' => 'Afbeeldingen selecteren',
+    'reset' => 'Galerij resetten',
+    'update_photo_description' => 'Fotobeschrijving bijwerken',
+    'update_photo_description_placeholder' => 'Fotobeschrijving...',
+    'delete_photo' => 'Deze foto verwijderen',
+    'gallery_box' => 'Galerij afbeeldingen',
+    'by' => 'Door',
+    'menu_name' => 'Galerijen',
+    'gallery_images' => 'Galerij afbeeldingen',
+    'add_gallery_short_code' => 'Galerij toevoegen',
+    'shortcode_name' => 'Galerij afbeeldingen',
+    'limit_display' => 'Weergavelimiet',
+    'edit_this_gallery' => 'Deze galerij bewerken',
+    'galleries_page' => 'Galerijpagina',
+    'by_name' => 'Door :name',
+    'title' => 'Titel',
+    'limit' => 'Beperken',
+    'limit_helper' => 'Aantal galerijen om te tonen. ',
+];

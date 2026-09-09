@@ -1,0 +1,126 @@
+<?php
+
+namespace Botble\Ecommerce\Forms\Settings;
+
+use Botble\Base\Forms\FieldOptions\OnOffFieldOption;
+use Botble\Base\Forms\Fields\OnOffCheckboxField;
+use Botble\Ecommerce\Facades\EcommerceHelper;
+use Botble\Ecommerce\Http\Requests\Settings\ProductReviewSettingRequest;
+use Botble\Setting\Forms\SettingForm;
+
+class ProductReviewSettingForm extends SettingForm
+{
+    public function setup(): void
+    {
+        parent::setup();
+
+        $this
+            ->setSectionTitle(trans('plugins/ecommerce::setting.product_review.name'))
+            ->setSectionDescription(trans('plugins/ecommerce::setting.product_review.description'))
+            ->setValidatorClass(ProductReviewSettingRequest::class)
+            ->add(
+                'review_enabled',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product_review.form.enable_review'))
+                    ->value(EcommerceHelper::isReviewEnabled())
+                    ->helperText(trans('plugins/ecommerce::setting.product_review.form.enable_review_help'))
+                    ->attributes([
+                        'data-bb-toggle' => 'collapse',
+                        'data-bb-target' => '.review-settings',
+                    ])
+            )
+            ->add('open_fieldset_review_settings', 'html', [
+                'html' => sprintf(
+                    '<fieldset class="form-fieldset mt-3 review-settings" style="display: %s;" data-bb-value="1">',
+                    EcommerceHelper::isReviewEnabled() ? 'block' : 'none'
+                ),
+            ])
+            ->add(
+                'allow_customer_upload_image_in_review',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product_review.form.allow_customer_upload_image_in_review'))
+                    ->value(get_ecommerce_setting('allow_customer_upload_image_in_review', true))
+                    ->helperText(trans('plugins/ecommerce::setting.product_review.form.allow_customer_upload_image_in_review_help'))
+                    ->attributes([
+                        'data-bb-toggle' => 'collapse',
+                        'data-bb-target' => '.review-image-settings',
+                    ])
+            )
+            ->add('open_fieldset_review_image_settings', 'html', [
+                'html' => sprintf(
+                    '<fieldset class="form-fieldset review-image-settings" style="display: %s;" data-bb-value="1">',
+                    get_ecommerce_setting('allow_customer_upload_image_in_review', true) ? 'block' : 'none'
+                ),
+            ])
+            ->add('review_max_file_size', 'number', [
+                'label' => trans('plugins/ecommerce::setting.product_review.form.review.max_file_size'),
+                'value' => EcommerceHelper::reviewMaxFileSize(),
+                'helper_text' => trans('plugins/ecommerce::setting.product_review.form.review.max_file_size_help'),
+                'attr' => [
+                    'min' => 1,
+                    'max' => 1024,
+                ],
+            ])
+            ->add('review_max_file_number', 'number', [
+                'label' => trans('plugins/ecommerce::setting.product_review.form.review.max_file_number'),
+                'value' => EcommerceHelper::reviewMaxFileNumber(),
+                'helper_text' => trans('plugins/ecommerce::setting.product_review.form.review.max_file_number_help'),
+                'attr' => [
+                    'min' => 1,
+                    'max' => 100,
+                ],
+            ])
+            ->add(
+                'display_uploaded_customer_review_images_list',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product_review.form.display_uploaded_customer_review_images_list'))
+                    ->value(get_ecommerce_setting('display_uploaded_customer_review_images_list', true))
+                    ->helperText(trans('plugins/ecommerce::setting.product_review.form.display_uploaded_customer_review_images_list_help'))
+            )
+            ->add('close_fieldset_review_image_settings', 'html', ['html' => '</fieldset>'])
+            ->add(
+                'review_comment_required',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product_review.form.review_comment_required'))
+                    ->value(EcommerceHelper::isReviewCommentRequired())
+                    ->helperText(trans('plugins/ecommerce::setting.product_review.form.review_comment_required_help'))
+            )
+            ->add(
+                'only_allow_customers_purchased_to_review',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product_review.form.only_allow_customers_purchased_to_review'))
+                    ->value(EcommerceHelper::onlyAllowCustomersPurchasedToReview())
+                    ->helperText(trans('plugins/ecommerce::setting.product_review.form.only_allow_customers_purchased_to_review_help'))
+            )
+            ->add(
+                'review_need_to_be_approved',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product_review.form.review_need_to_be_approved'))
+                    ->value(get_ecommerce_setting('review_need_to_be_approved'))
+                    ->helperText(trans('plugins/ecommerce::setting.product_review.form.review_need_to_be_approved_help'))
+            )
+            ->add(
+                'show_customer_full_name',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product_review.form.show_customer_full_name'))
+                    ->value(get_ecommerce_setting('show_customer_full_name', true))
+                    ->helperText(trans('plugins/ecommerce::setting.product_review.form.show_customer_full_name_help'))
+            )
+            ->add(
+                'hide_rating_when_no_reviews',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product_review.form.hide_rating_when_no_reviews'))
+                    ->value(get_ecommerce_setting('hide_rating_when_no_reviews', false))
+                    ->helperText(trans('plugins/ecommerce::setting.product_review.form.hide_rating_when_no_reviews_help'))
+            )
+            ->add('close_fieldset_review_settings', 'html', ['html' => '</fieldset>']);
+    }
+}

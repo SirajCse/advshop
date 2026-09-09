@@ -1,0 +1,454 @@
+<?php
+
+return [
+    'statuses' => [
+        'pending' => 'Laukiama',
+        'processing' => 'Apdorojama',
+        'completed' => 'Užbaigta',
+        'canceled' => 'Atšaukta',
+        'partial_returned' => 'Iš dalies grąžinta',
+        'returned' => 'Grąžinta',
+    ],
+    'return_statuses' => [
+        'pending' => 'Laukiama',
+        'processing' => 'Apdorojama',
+        'completed' => 'Užbaigta',
+        'canceled' => 'Atšaukta',
+    ],
+    'menu' => 'Užsakymai',
+    'create' => 'Sukurti užsakymą',
+    'cancel_error' => 'Užsakymas yra pristatomos arba neužbaigtas',
+    'cancel_success' => 'Sėkmingai atšaukėte užsakymą',
+    'return_error' => 'Užsakymas yra pristatomos arba neužbaigtas',
+    'return_success' => 'Produktų grąžinimo užklausa sėkminga!',
+    'incomplete_order' => 'Neužbaigti užsakymai',
+    'order_id' => 'Užsakymo ID',
+    'product_id' => 'Produkto ID',
+    'customer_label' => 'Klientas',
+    'tax_amount' => 'Mokesčių suma',
+    'shipping_amount' => 'Pristatymo suma',
+    'payment_method' => 'Mokėjimo būdas',
+    'payment_status_label' => 'Mokėjimo būsena',
+    'manage_orders' => 'Valdyti užsakymus',
+    'order_intro_description' => 'Kai jūsų parduotuvė turės užsakymų, čia juos apdorosite ir seksite.',
+    'create_new_order' => 'Sukurti naują užsakymą',
+    'manage_incomplete_orders' => 'Valdyti neužbaigtus užsakymus',
+    'incomplete_orders_intro_description' => 'Neužbaigtas užsakymas yra užsakymas, sukurtas, kai klientas prideda produktą į krepšelį, užpildo pirkimo informaciją, bet neužbaigia atsiskaitymo proceso.',
+    'invoice_for_order' => 'Sąskaita už užsakymą',
+    'created' => 'Sukurta',
+    'created_at' => 'Sukurta',
+    'invoice' => 'Sąskaita',
+    'return' => 'Užsakymo grąžinimo užklausa',
+    'restock_products' => 'Grąžinti :count produktą(-us) į atsargas?',
+    'is_return' => 'Grąžinimo žymimasis laukelis',
+    'total_refund_amount' => 'Bendra grąžinimo suma',
+    'total_amount_can_be_refunded' => 'Bendra suma, kuri gali būti grąžinta',
+    'refund_reason' => 'Grąžinimo priežastis',
+    'products' => 'produktas(-ai)',
+    'products_label' => 'Produktas(-ai)',
+    'default' => 'Numatytasis',
+    'system' => 'Sistema',
+    'new_order_from' => 'Naujas užsakymas :order_id iš :customer',
+    'confirmation_email_was_sent_to_customer' => 'Patvirtinimo el. laiškas buvo išsiųstas klientui',
+    'create_order_from_payment_page' => 'Užsakymas buvo sukurtas iš atsiskaitymo puslapio',
+    'create_order_from_admin_page' => 'Užsakymas buvo sukurtas iš administravimo puslapio',
+    'order_was_verified_by' => 'Užsakymą patvirtino %user_name%',
+    'new_order' => 'Naujas užsakymas :order_id',
+    'payment_was_confirmed_by' => 'Mokėjimas buvo patvirtintas (suma :money) %user_name%',
+    'edit_order' => 'Redaguoti užsakymą :code',
+    'confirm_order_success' => 'Užsakymas patvirtintas sėkmingai!',
+    'error_when_sending_email' => 'Įvyko klaida siunčiant el. laišką',
+    'sent_confirmation_email_success' => 'Patvirtinimo el. laiškas išsiųstas sėkmingai!',
+    'order_was_sent_to_shipping_team' => 'Užsakymas buvo išsiųstas pristatymo komandai',
+    'by_username' => '%user_name%',
+    'shipping_was_created_from' => 'Pristatymas buvo sukurtas iš užsakymo %order_id%',
+    'shipping_was_created_from_pos' => 'Pristatymas buvo sukurtas iš POS užsakymo %order_id%',
+    'shipping_was_canceled_success' => 'Pristatymas atšauktas sėkmingai!',
+    'shipping_was_canceled_by' => 'Pristatymą atšaukė %user_name%',
+    'update_shipping_address_success' => 'Pristatymo adresas atnaujintas sėkmingai!',
+    'order_was_canceled_by' => 'Užsakymą atšaukė %user_name%',
+    'order_was_returned_by' => 'Užsakymą grąžino %user_name%',
+    'confirm_payment_success' => 'Mokėjimas patvirtintas sėkmingai!',
+    'refund_amount_invalid' => 'Grąžinimo suma turi būti mažesnė arba lygi :price',
+    'number_of_products_invalid' => 'Grąžinamų produktų skaičius neteisingas!',
+    'cannot_found_payment_for_this_order' => 'Nerasta mokėjimo šiam užsakymui!',
+    'refund_success_with_price' => 'Grąžinimas sėkmingas :price',
+    'refund_success' => 'Grąžinimas sėkmingas!',
+    'order_is_not_existed' => 'Užsakymas neegzistuoja!',
+    'reorder' => 'Užsakyti iš naujo',
+    'sent_email_incomplete_order_success' => 'El. laiškas priminimui apie neužbaigtą užsakymą išsiųstas sėkmingai!',
+    'applied_coupon_success' => 'Kuponas ":code" pritaikytas sėkmingai!',
+    'new_order_notice' => 'Turite <span class="bold">:count</span> naują(-us) užsakymą(-us)',
+    'view_all' => 'Peržiūrėti visus',
+    'view_order' => 'Peržiūrėti užsakymą',
+    'cancel_order' => 'Atšaukti užsakymą',
+    'order_canceled' => 'Užsakymas atšauktas',
+    'order_was_canceled_at' => 'Užsakymas buvo atšauktas',
+    'return_order' => 'Grąžinti užsakymą',
+    'order_returned' => 'Užsakymas grąžintas',
+    'order_was_returned_at' => 'Užsakymas buvo grąžintas',
+    'completed' => 'Užbaigta',
+    'uncompleted' => 'Neužbaigta',
+    'sku' => 'SKU',
+    'warehouse' => 'Sandėlis',
+    'sub_amount' => 'Tarpinė suma',
+    'coupon_code' => 'Kupono kodas: ":code"',
+    'shipping_fee' => 'Pristatymo mokestis',
+    'tax' => 'Mokestis',
+    'shipping_tax' => 'Pristatymo mokestis',
+
+    'refunded_amount' => 'Grąžinta suma',
+    'amount_received' => 'Faktiškai gauta suma',
+    'download_invoice' => 'Atsisiųsti sąskaitą',
+    'payment_proof' => 'Mokėjimo patvirtinimas',
+    'print_invoice' => 'Spausdinti sąskaitą',
+    'add_note' => 'Pridėti pastabą...',
+    'note_description' => '(iš kliento atsiskaitymo puslapyje)',
+    'add_note_helper' => 'Pastaba apie užsakymą, pvz.: laikas arba pristatymo instrukcijos. Šią pastabą prideda klientas atsiskaitymo puslapyje, neturėtumėte jos keisti.',
+    'admin_private_notes' => 'Privačios pastabos',
+    'admin_private_notes_helper' => 'Pastaba administratoriui / vadovui apie šį užsakymą. Šią pastabą prideda administratorius / vadovas, klientas jos negali matyti.',
+    'order_was_confirmed' => 'Užsakymas buvo patvirtintas',
+    'confirm_order' => 'Patvirtinti užsakymą',
+    'confirm' => 'Patvirtinti',
+    'order_was_canceled' => 'Užsakymas buvo atšauktas',
+    'pending_payment' => 'Laukiamas mokėjimas',
+    'payment_was_accepted' => 'Mokėjimas :money priimtas',
+    'payment_was_refunded' => 'Mokėjimas buvo grąžintas',
+    'confirm_payment' => 'Patvirtinti mokėjimą',
+    'refund' => 'Grąžinimas',
+    'all_products_are_not_delivered' => 'Visi produktai nepristatyti',
+    'delivery' => 'Pristatymas',
+    'history' => 'Istorija',
+    'order_number' => 'Užsakymo numeris',
+    'from' => 'iš',
+    'status' => 'Būsena',
+    'successfully' => 'Sėkmingai',
+    'transaction_type' => 'Transakcijos tipas',
+    'staff' => 'Darbuotojas',
+    'refund_date' => 'Grąžinimo data',
+    'n_a' => 'Nėra',
+    'payment_date' => 'Mokėjimo data',
+    'payment_gateway' => 'Mokėjimo šliuzas',
+    'transaction_amount' => 'Transakcijos suma',
+    'resend' => 'Siųsti iš naujo',
+    'default_store' => 'Numatytoji parduotuvė',
+    'update_address' => 'Atnaujinti adresą',
+    'have_an_account_already' => 'Jau turite paskyrą',
+    'dont_have_an_account_yet' => 'Dar neturite paskyros',
+    'mark_payment_as_confirmed' => 'Pažymėti <span>:method</span> kaip patvirtintą',
+    'resend_order_confirmation' => 'Pakartotinai siųsti užsakymo patvirtinimą',
+    'resend_order_confirmation_description' => 'Patvirtinimo el. laiškas bus išsiųstas <strong>:email</strong>?',
+    'send' => 'Siųsti',
+    'update' => 'Atnaujinti',
+    'cancel_shipping_confirmation' => 'Atšaukti pristatymo patvirtinimą?',
+    'cancel_shipping_confirmation_description' => 'Atšaukti pristatymo patvirtinimą?',
+    'cancel_order_confirmation' => 'Atšaukti užsakymo patvirtinimą?',
+    'cancel_order_confirmation_description' => 'Ar tikrai norite atšaukti šį užsakymą? Šis veiksmas negali būti atšauktas',
+    'return_order_confirmation' => 'Grąžinti užsakymo patvirtinimą?',
+    'return_order_confirmation_description' => 'Ar tikrai norite grąžinti šį užsakymą? Šis veiksmas negali būti atšauktas',
+    'confirm_payment_confirmation_description' => 'Apdorota <strong>:method</strong>. Ar gavote mokėjimą už sistemos ribų? Šis mokėjimas nebus išsaugotas sistemoje ir negali būti grąžintas',
+    'save_note' => 'Išsaugoti pastabą',
+    'order_note' => 'Užsakymo pastaba',
+    'order_note_placeholder' => 'Pastaba apie užsakymą, pvz.: laikas arba pristatymo instrukcijos.',
+    'order_amount' => 'Užsakymo suma',
+    'additional_information' => 'Papildoma informacija',
+    'notice_about_incomplete_order' => 'Pranešimas apie neužbaigtą užsakymą',
+    'notice_about_incomplete_order_description' => 'Priminimo el. laiškas apie neužbaigtą užsakymą bus išsiųstas <strong>:email</strong>?',
+    'incomplete_order_description_1' => 'Neužbaigtas užsakymas yra tada, kai potencialus klientas prideda prekių į krepšelį ir eina iki mokėjimo puslapio, bet neužbaigia transakcijos.',
+    'incomplete_order_description_2' => 'Jei susisiekėte su klientais ir jie nori tęsti pirkimą, galite padėti jiems užbaigti užsakymą paspausdami nuorodą:',
+    'send_an_email_to_recover_this_order' => 'Siųsti el. laišką klientui, kad atkurtų šį užsakymą',
+    'see_maps' => 'Žiūrėti žemėlapyje',
+    'one_or_more_products_dont_have_enough_quantity' => 'Vieno arba daugiau produktų neužtenka kiekio!',
+    'cannot_send_order_recover_to_mail' => 'El. paštas nerastas, todėl negalima siųsti atkūrimo el. laiško klientui.',
+    'payment_info' => 'Mokėjimo informacija',
+    'payment_method_refund_automatic' => 'Jūsų klientui bus grąžinti pinigai naudojant :method automatiškai.',
+    'order' => 'Užsakymas',
+    'order_information' => 'Užsakymo informacija',
+    'create_a_new_product' => 'Sukurti naują produktą',
+    'out_of_stock' => 'Nėra sandėlyje',
+    'products_available' => 'produktas(-ai) prieinamas(-i)',
+    'no_products_found' => 'Produktų nerasta!',
+    'note' => 'Pastaba',
+    'note_for_order' => 'Pastaba užsakymui...',
+    'amount' => 'Suma',
+    'add_discount' => 'Pridėti nuolaidą',
+    'discount' => 'Nuolaida',
+    'add_shipping_fee' => 'Pridėti pristatymo mokestį',
+    'shipping' => 'Pristatymas',
+    'total_amount' => 'Bendra suma',
+    'confirm_payment_and_create_order' => 'Patvirtinti mokėjimą ir sukurti užsakymą',
+    'paid' => 'Apmokėta',
+    'pay_later' => 'Mokėti vėliau',
+    'customer_information' => 'Kliento informacija',
+    'create_new_customer' => 'Sukurti naują klientą',
+    'no_customer_found' => 'Klientų nerasta!',
+    'orders' => 'užsakymas(-ai)',
+    'shipping_address' => 'Pristatymo adresas',
+    'shipping_info' => 'Pristatymo informacija',
+    'billing_address' => 'Sąskaitos adresas',
+    'see_on_maps' => 'Žiūrėti žemėlapyje',
+    'name' => 'Pavadinimas',
+    'price' => 'Kaina',
+    'product_name' => 'Produkto pavadinimas',
+    'total' => 'Viso',
+    'action' => 'Veiksmas',
+    'add_product' => 'Pridėti produktą',
+    'enter_free_text' => 'Įveskite laisvą tekstą',
+    'promotion_discount_amount' => 'Akcijos suma',
+    'add' => 'Pridėti',
+    'store' => 'Parduotuvė',
+    'please_choose_product_option' => 'Pasirinkite produkto parinktį',
+    'sku_optional' => 'SKU (neprivaloma)',
+    'with_storehouse_management' => 'Su sandėlio valdymu?',
+    'quantity' => 'Kiekis',
+    'allow_customer_checkout_when_this_product_out_of_stock' => 'Leisti klientui atsiskaityti, kai šio produkto nėra atsargose?',
+    'address' => 'Adresas',
+    'phone' => 'Telefonas',
+    'country' => 'Šalis',
+    'state' => 'Valstija / Regionas',
+    'city' => 'Miestas',
+    'zip_code' => 'Pašto kodas',
+    'discount_based_on' => 'Nuolaida pagal',
+    'or_coupon_code' => 'Arba kupono kodą',
+    'description' => 'Aprašymas',
+    'how_to_select_configured_shipping' => 'Kaip pasirinkti sukonfigūruotą pristatymą?',
+    'please_add_customer_information_with_the_complete_shipping_address_to_see_the_configured_shipping_rates' => 'Pridėkite kliento informaciją su pilnu pristatymo adresu, kad matytumėte sukonfigūruotus pristatymo tarifus',
+    'please_products_and_customer_address_to_see_the_shipping_rates' => 'Pridėkite produktus ir kliento informaciją su pilnu pristatymo adresu, kad matytumėte sukonfigūruotus pristatymo tarifus',
+    'shipping_method_not_found' => 'Pristatymo būdas nerastas',
+    'free_shipping' => 'Nemokamas pristatymas',
+    'custom' => 'Pasirinktinis',
+    'email' => 'El. paštas',
+    'create_order' => 'Sukurti užsakymą',
+    'close' => 'Uždaryti',
+    'confirm_payment_title' => 'Patvirtinti mokėjimą yra :status šiam užsakymui',
+    'confirm_payment_description' => 'Užsakymo mokėjimo būsena yra :status. Kai užsakymas sukurtas, negalite pakeisti mokėjimo būdo ar būsenos',
+    'select_payment_method' => 'Pasirinkite mokėjimo būdą',
+    'cash_on_delivery_cod' => 'Mokėjimas pristatymo metu (COD)',
+    'bank_transfer' => 'Banko pavedimas',
+    'paid_amount' => 'Sumokėta suma',
+    'update_email' => 'Atnaujinti el. paštą',
+    'save' => 'Išsaugoti',
+    'cancel' => 'Atšaukti',
+    'create_a_new_order' => 'Sukurti naują užsakymą',
+    'search_or_create_new_product' => 'Ieškoti arba sukurti naują produktą',
+    'search_or_create_new_customer' => 'Ieškoti arba sukurti naują klientą',
+    'discount_description' => 'Nuolaidos aprašymas',
+    'cant_select_out_of_stock_product' => 'Negalima pasirinkti produkto, kurio nėra atsargose!',
+    'referral' => 'Persiuntimas',
+    'return_order_unique' => 'Toks pat :attribute jau egzistuoja ankstesnėje grąžinimo užklausoje.',
+    'total_return_amount' => 'Bendra grąžinimo suma',
+    'change_return_order_status' => 'Keisti grąžinimo užsakymo būseną',
+    'return_order_approve' => 'Patvirtinti',
+    'return_order_reject' => 'Atmesti',
+    'return_reason' => 'Grąžinimo priežastis',
+    'order_return_moderation' => [
+        'approve_button' => 'Patvirtinti',
+        'reject_button' => 'Atmesti',
+        'approve_confirmation_title' => 'Patvirtinti grąžinimo užsakymą',
+        'approve_confirmation_description' => 'Kai patvirtinsite šį grąžinimo užsakymą, būsena bus pakeista į apdorojamą ir klientas bus informuotas. Ar tikrai norite patvirtinti šį grąžinimo užsakymą?',
+        'reject_confirmation_title' => 'Atmesti grąžinimo užsakymą',
+        'reject_confirmation_description' => 'Kai atmesite šį grąžinimo užsakymą, būsena bus pakeista į atšauktą ir klientas bus informuotas. Ar tikrai norite atmesti šį grąžinimo užsakymą?',
+        'mark_as_completed_button' => 'Pažymėti kaip užbaigtą',
+        'mark_as_completed_confirmation_title' => 'Pažymėti grąžinimo užsakymą kaip užbaigtą',
+        'mark_as_completed_confirmation_description' => 'Kai pažymėsite šį grąžinimo užsakymą kaip užbaigtą, būsena bus pakeista į užbaigtą ir klientas bus informuotas. Ar tikrai norite pažymėti šį grąžinimo užsakymą kaip užbaigtą?',
+    ],
+    'order_return_action' => [
+        'created' => 'Sukurta',
+        'approved' => 'Patvirtinta',
+        'rejected' => 'Atmesta',
+        'mark_as_completed' => 'Pažymėti kaip užbaigtą',
+    ],
+    'referral_data' => [
+        'ip' => 'IP',
+        'landing_domain' => 'Nukreipimo domenas',
+        'landing_page' => 'Nukreipimo puslapis',
+        'landing_params' => 'Nukreipimo parametrai',
+        'gclid' => 'Gclid',
+        'fclid' => 'Fclid',
+        'utm_source' => 'UTM šaltinis',
+        'utm_campaign' => 'UTM kampanija',
+        'utm_medium' => 'UTM kanalas',
+        'utm_term' => 'UTM terminas',
+        'utm_content' => 'UTM turinys',
+        'referral' => 'Persiuntimas',
+        'referrer_url' => 'Persiuntimo URL',
+        'referrer_domain' => 'Persiuntimo domenas',
+    ],
+    'order_address_types' => [
+        'shipping_address' => 'Pristatymo adresas',
+        'billing_address' => 'Sąskaitos adresas',
+    ],
+    'order_return_reasons' => [
+        'damaged' => 'Pažeistas produktas',
+        'defective' => 'Sugedęs',
+        'incorrect_item' => 'Neteisinga prekė',
+        'arrived_late' => 'Atvyko vėlai',
+        'not_as_described' => 'Ne taip, kaip aprašyta',
+        'no_longer_want' => 'Nebereikia',
+        'other' => 'Kita',
+    ],
+    'order_return_reason' => 'Grąžinimo priežastis',
+    'notices' => [
+        'update_return_order_status_error' => 'Nepavyko atnaujinti grąžinimo užsakymo būsenos! Galbūt grąžinimo užsakymo būsena netinkama.',
+        'update_return_order_status_success' => 'Grąžinimo užsakymo būsena atnaujinta sėkmingai!',
+    ],
+    'order_return' => 'Užsakymų grąžinimai',
+    'edit_order_return' => 'Redaguoti užsakymo grąžinimą :code',
+    'order_return_items_count' => 'Produkto vnt.',
+    'new_order_notifications' => [
+        'new_order' => 'Naujas užsakymas',
+        'new_order_with_code' => 'Naujas užsakymas :code',
+        'view' => 'Peržiūrėti',
+        'description' => ':customer užsakė :quantity produktą(-us)',
+        'product' => 'produktas',
+        'products' => 'produktai',
+    ],
+    'confirm_payment_notifications' => [
+        'confirm_payment' => 'Patvirtinti mokėjimą',
+        'confirm_payment_with_code' => 'Patvirtinti mokėjimą :code',
+        'description' => 'Užsakymo :order mokėjimas buvo patvirtintas (suma :amount) :by',
+    ],
+    'update_shipping_status_notifications' => [
+        'update_shipping_status' => 'Atnaujinti pristatymo būseną',
+        'update_shipping_status_with_code' => 'Atnaujinti pristatymo būseną :code',
+        'description' => 'Užsakymas :order pakeitė pristatymo būseną :description',
+        'changed_from_to' => 'iš :old_status į :new_status',
+        'changed_to' => 'į :status',
+    ],
+    'cancel_order_notifications' => [
+        'cancel_order' => 'Atšaukti užsakymą',
+        'cancel_order_with_code' => 'Atšaukti užsakymą :code',
+        'description' => 'Užsakymą :order atšaukė klientas :customer',
+    ],
+    'return_order_notifications' => [
+        'return_order' => 'Grąžinti užsakymą',
+        'return_order_with_code' => 'Grąžinti užsakymą :code',
+        'description' => ':customer paprašė grąžinti produktą(-us)',
+    ],
+    'order_completed_notifications' => [
+        'order_completed' => 'Užsakymas užbaigtas',
+        'order_completed_with_code' => 'Užsakymas užbaigtas :code',
+        'description' => 'Užsakymas :order buvo užbaigtas',
+    ],
+    'tax_info' => [
+        'name' => 'Mokesčių informacija',
+        'update' => 'Atnaujinti mokesčių informaciją',
+        'update_success' => 'Mokesčių informacija atnaujinta sėkmingai!',
+        'company_name' => 'Įmonės pavadinimas',
+        'company_address' => 'Įmonės adresas',
+        'company_tax_code' => 'Įmonės mokesčių kodas',
+        'company_email' => 'Įmonės el. paštas',
+    ],
+    'mark_as_completed' => [
+        'name' => 'Pažymėti kaip užbaigtą',
+        'modal_title' => 'Pažymėti užsakymą kaip užbaigtą',
+        'modal_description' => 'Ar tikrai norite pažymėti šį užsakymą kaip užbaigtą? Tai pakeis užsakymo būseną į užbaigtą ir negali būti atšaukta.',
+        'success' => 'Užsakymas pažymėtas kaip užbaigtas sėkmingai!',
+        'history' => 'Užsakymą pažymėjo kaip užbaigtą :admin :time',
+    ],
+    'generate_invoice' => 'Generuoti sąskaitą',
+    'generated_invoice_successfully' => 'Sąskaita sugeneruota sėkmingai!',
+    'order_cannot_be_canceled' => 'Užsakymas apdorojamas arba užbaigtas, negali būti atšauktas!',
+    'cancellation_reason' => 'Priežastis: :reason',
+    'order_cancellation_reason' => 'Užsakymo atšaukimo priežastis',
+    'select_cancellation_reason' => 'Pasirinkite priežastį...',
+    'cancellation_reason_description' => 'Aprašymas',
+    'cancellation_reason_description_placeholder' => 'Nurodykite, kodėl atšaukiate šį užsakymą...',
+    'order_was_canceled_by_with_reason' => 'Užsakymą atšaukė :admin dėl: :reason',
+    'admin' => 'Administratorius',
+    'vendor' => 'Pardavėjas',
+    'cancellation_reasons' => [
+        'change-mind' => 'Perdumojau arba nebereikia produkto',
+        'found-better-price' => 'Radau geresnę kainą kitur',
+        'out-of-stock' => 'Produktas nėra atsargose',
+        'shipping-delays' => 'Pristatymo vėlavimai',
+        'incorrect-address' => 'Neteisingas arba neišsamus pristatymo adresas',
+        'out-of-service-area' => 'Pristatymo adresas yra už mūsų aptarnavimo zonos ribų',
+        'customer-requested' => 'Klientas paprašė atšaukti',
+        'not-as-described' => 'Produktas ne toks, kaip aprašyta',
+        'payment-issues' => 'Mokėjimo problemos arba atmesta transakcija',
+        'unforeseen-circumstances' => 'Nenumaty tos aplinkybės arba nepaprastos situacijos',
+        'technical-issues' => 'Techninės problemos atsiskaitymo procese',
+        'other' => 'Kita',
+    ],
+    'requires_products_to_create_order' => 'Pasirinkite bent vieną produktą, kad sukurtumėte užsakymą',
+    'transaction_id' => 'Transakcijos ID',
+    'incomplete_order_transaction_id_placeholder' => 'Galite palikti šį lauką tuščią, jei mokėjimo būdas yra COD arba banko pavedimas',
+    'digital_product_downloads' => [
+        'title' => 'Skaitmeninių produktų atsisiuntimai',
+        'download_count' => ':count atsisiuntimas(-ai)',
+        'first_download' => 'Pirmas atsisiuntimas :time',
+        'not_downloaded_yet' => 'Dar neatsiųsta',
+        'no_files_found' => 'Šiam produktui nerasta jokių failų.',
+        'no_external_links' => 'Šiam produktui nėra išorinių atsisiuntimo nuorodų.',
+        'no_downloadable_files' => 'Šiam produktui nėra parsisiųsti skirtų failų.',
+        'files_not_available' => 'Atsisiuntimo failai neprieinami. Susisiekite su palaikymu.',
+    ],
+        'digital_product_checkout' => [
+        'title' => 'Skaitmeninio Produkto Atsisiuntimas',
+        'message' => 'Jūsų skaitmeninių produktų atsisiuntimo nuorodos bus išsiųstos į jūsų el. pašto adresą po mokėjimo užbaigimo.',
+    ],
+    'select_one' => 'Pasirinkite vieną',
+    'confirm_delivery_error' => 'Negalite patvirtinti pristatymo šiam užsakymui',
+    'confirm_delivery_success' => 'Užsakymo pristatymas patvirtintas sėkmingai!',
+
+    'export' => [
+        'total_orders' => 'Viso užsakymų',
+        'limit' => 'Eksportuojamų užsakymų skaičius',
+        'limit_placeholder' => 'Įveskite eksportuojamų užsakymų skaičių (palikite tuščią visiems)',
+        'all_status' => 'Visos būsenos',
+        'start_date' => 'Pradžios data',
+        'start_date_placeholder' => 'Pasirinkite pradžios datą',
+        'end_date' => 'Pabaigos data',
+        'end_date_placeholder' => 'Pasirinkite pabaigos datą',
+    ],
+
+    'edit_email' => 'Redaguoti el. paštą',
+    'export_title' => 'Užsakymai',
+    'export_description' => 'Eksportuoti užsakymus į CSV failą',
+    'download' => 'Atsisiųsti',
+    'checkout_successfully' => 'Apmokėjimas sėkmingas!',
+    'coupon' => 'Kuponas',
+    'back_to_cart' => 'Krepšelis',
+    'checkout_error' => 'Apmokėjimo klaida!',
+    'order_successfully_at_site' => 'Sėkmingas užsakymas :site_title',
+    'order_placed_successfully' => 'Jūsų užsakymas sėkmingai pateiktas',
+    'thank_you_purchase' => 'Dėkojame, kad įsigijote mūsų produktus!',
+    'continue_shopping' => 'Tęsti apsipirkimą',
+    'using_coupon_code' => 'Naudojant kuponą',
+    'customer' => 'Klientas',
+    'refund_note' => 'Grąžinimo pastaba',
+    'refund_transactions' => 'Grąžinimo sandoriai',
+    'order_returns' => 'Užsakymų grąžinimai',
+    'shipping_fees_not_included' => '(Pristatymo išlaidos neįskaičiuotos)',
+    'delivery_notes' => 'Pristatymo pastabos',
+    'order_date' => 'Užsakymo data',
+    'order_return_request_not_found' => 'Užsakymo grąžinimo užklausa nerasta!',
+    'order_number_1' => 'Užsakymo numeris',
+    'order_status' => 'Užsakymo būsena',
+    'original_order' => 'Originalus užsakymas',
+    'payment_status' => 'Mokėjimo būsena',
+    'payment_status_1' => 'Mokėjimo būsena',
+    'refund_amount' => 'Grąžinimo suma',
+    'shipment_status' => 'Siuntinių būsena',
+    'shipping_company_name' => 'Pristatymo įmonės pavadinimas',
+    'shipping_information' => 'Pristatymo informacija',
+    'shipping_status' => 'Pristatymo būsena',
+    'the_order_could_not_be_found_please_try_again_or_c' => 'Užsakymas nerastas. Bandykite dar kartą arba susisiekite su mumis, jei reikia pagalbos.',
+    'this_order_cannot_be_returned_at_this_time' => 'Šiuo metu šis užsakymas negali būti grąžintas.',
+    'tracking_id' => 'Sekimo ID',
+    'tracking_link' => 'Sekimo nuoroda',
+    'request_code' => 'Užklausa #:code',
+    'order_successfully_id' => 'Užsakymas sėkmingas. Užsakymo numeris :id',
+    'thank_you_name' => 'Ačiū, :name!',
+    'customer' => 'Klientas',
+    'your_order_is_confirmed' => 'Jūsų užsakymas patvirtintas',
+    'order_confirmed_message' => 'Gavome jūsų užsakymą ir jį ruošiame.',
+    'view_order_history' => 'Peržiūrėti užsakymų istoriją',
+    'need_help' => 'Reikia pagalbos?',
+    'contact_us' => 'Susisiekite su mumis',
+    'contact_information' => 'Kontaktinė informacija',
+    'customer_details' => 'Kliento duomenys',
+    'tax_information' => 'Mokesčių informacija',
+    'order_summary' => 'Užsakymo santrauka',
+];

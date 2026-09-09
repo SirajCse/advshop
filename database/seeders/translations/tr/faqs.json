@@ -1,0 +1,42 @@
+{
+    "What Shipping Methods Are Available?": {
+        "question": "Hangi kargo yöntemleri mevcut?",
+        "answer": "Standart kargo, hızlı kargo ve seçili bölgelerde aynı gün teslimat dahil olmak üzere çeşitli kargo yöntemleri sunuyoruz."
+    },
+    "Do You Ship Internationally?": {
+        "question": "Uluslararası kargo yapıyor musunuz?",
+        "answer": "Evet, dünya genelinde birçok ülkeye kargo yapıyoruz. Kargo ücretleri ve teslimat süreleri varış noktasına göre değişir."
+    },
+    "How Long Will It Take To Get My Package?": {
+        "question": "Paketimin gelmesi ne kadar sürer?",
+        "answer": "Standart kargo genellikle 5-7 iş günü, hızlı kargo 2-3 iş günü sürer. Siparişiniz gönderildiğinde takip bilgilerini alacaksınız."
+    },
+    "What Payment Methods Are Accepted?": {
+        "question": "Hangi ödeme yöntemleri kabul ediliyor?",
+        "answer": "Kredi/banka kartları (Visa, MasterCard, American Express), PayPal ve diğer güvenli çevrimiçi ödeme yöntemlerini kabul ediyoruz."
+    },
+    "Is Buying On-Line Safe?": {
+        "question": "Çevrimiçi alışveriş güvenli mi?",
+        "answer": "Kesinlikle güvenli. Kişisel ve ödeme bilgilerinizi korumak için SSL şifreleme ve endüstri standardı güvenlik önlemleri kullanıyoruz."
+    },
+    "How do I place an Order?": {
+        "question": "Nasıl sipariş verebilirim?",
+        "answer": "Ürünlere göz atın, sepete ekleyin ve ödeme sayfasına geçin. Siparişinizi tamamlamak için kargo ve ödeme bilgilerinizi girin."
+    },
+    "How Can I Cancel Or Change My Order?": {
+        "question": "Siparişimi nasıl iptal edebilir veya değiştirebilirim?",
+        "answer": "Lütfen mümkün olan en kısa sürede müşteri hizmetleri ekibimizle iletişime geçin. Talebinizi karşılamak için elimizden geleni yapacağız, ancak sipariş işlendikten sonra değişiklikler mümkün olmayabilir."
+    },
+    "Do I need an account to place an order?": {
+        "question": "Sipariş vermek için hesap oluşturmam gerekiyor mu?",
+        "answer": "Zorunlu değil, misafir olarak alışveriş yapabilirsiniz. Ancak bir hesap oluşturmak siparişlerinizi takip etmenize ve kargo bilgilerinizi kaydetmenize yardımcı olur."
+    },
+    "How Do I Track My Order?": {
+        "question": "Siparişimi nasıl takip edebilirim?",
+        "answer": "Siparişiniz gönderildiğinde, takip numarası içeren bir onay e-postası alacaksınız. Bu numarayı web sitemizde veya kargo şirketinin sitesinde kullanarak paketinizi takip edebilirsiniz."
+    },
+    "How Can I Return a Product?": {
+        "question": "Bir ürünü nasıl iade edebilirim?",
+        "answer": "Teslimat tarihinden itibaren 30 gün içinde ürünü iade edebilirsiniz. Sipariş detaylarınızla destek ekibimize ulaşın, iade sürecinde size rehberlik edeceğiz."
+    }
+}

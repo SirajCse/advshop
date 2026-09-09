@@ -1,0 +1,35 @@
+<?php
+
+return [
+    'shortcode' => 'Código curto',
+    'use' => 'Usar',
+    'ui-blocks' => 'Blocos de IU',
+    'search' => 'Pesquisar...',
+    'no_shortcode_found' => 'Nenhum shortcode encontrado.',
+    'shortcode_not_available' => 'O shortcode ":name" não está disponível ou foi removido.',
+    'cache_suggestion' => [
+        'title' => 'Sugestão de desempenho',
+        'description' => 'Você pode melhorar o desempenho do seu site ativando o cache de shortcode.',
+        'benefits' => 'Isso pode reduzir significativamente os tempos de carregamento da página armazenando em cache shortcodes renderizados.',
+        'enable_button' => 'Ativar cache de shortcode',
+        'dismiss_button' => 'Dispensar por uma semana',
+    ],
+    'form' => [
+        'enable_lazy_loading' => 'Ativar carregamento preguiçoso',
+        'no' => 'Não',
+        'yes' => 'Sim',
+        'lazy_loading_helper' => 'Quando ativado, o conteúdo do shortcode é carregado gradualmente à medida que a página é apresentada, o que ajuda a melhorar o tempo de carregamento.',
+        'enable_caching' => 'Ativar cache',
+        'caching_helper' => 'Quando ativado, o conteúdo deste shortcode fica em cache para melhorar o desempenho. Desative para conteúdo dinâmico que muda com frequência.',
+        'cache_disabled_notice' => 'Devido a problemas de interface, o cache deste bloco de IU foi desativado no código. O shortcode não será armazenado em cache mesmo que a opção esteja ativa.',
+        'lazy_loading_disabled_notice' => 'O carregamento preguiçoso deste bloco de IU foi desativado no código. O shortcode não o utilizará mesmo que esteja ativo.',
+        'custom_css' => 'CSS personalizado (opcional)',
+        'custom_css_helper' => 'Introduza o seu CSS numa única linha. Não funciona se tiver quebras de linha. Alguns caracteres especiais podem ser escapados.',
+        'background_color' => 'Cor de fundo (opcional)',
+        'text_color' => 'Cor do texto (opcional)',
+        'text_color_helper' => 'Esta cor pode ser substituída pelo tema. Se não funcionar, adicione o CSS em Aparência -> CSS personalizado.',
+        'background_image' => 'Imagem de fundo (opcional)',
+        'quantity' => 'Quantidade',
+        'tab_number' => 'Separador #:number',
+    ],
+];

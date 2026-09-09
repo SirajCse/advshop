@@ -1,0 +1,35 @@
+<?php
+
+return [
+    'shortcode' => 'Mã ngắn',
+    'use' => 'Sử dụng',
+    'ui-blocks' => 'Khối giao diện người dùng',
+    'search' => 'Tìm kiếm...',
+    'no_shortcode_found' => 'Không tìm thấy mã ngắn.',
+    'shortcode_not_available' => 'Shortcode ":name" không khả dụng hoặc đã bị xóa.',
+    'cache_suggestion' => [
+        'title' => 'Đề xuất hiệu suất',
+        'description' => 'Bạn có thể cải thiện hiệu suất trang web bằng cách bật bộ nhớ đệm cho mã ngắn.',
+        'benefits' => 'Điều này có thể giảm đáng kể thời gian tải trang bằng cách lưu trữ mã ngắn đã được xử lý.',
+        'enable_button' => 'Bật bộ nhớ đệm mã ngắn',
+        'dismiss_button' => 'Bỏ qua trong một tuần',
+    ],
+    'form' => [
+        'enable_lazy_loading' => 'Bật tải chậm',
+        'no' => 'Không',
+        'yes' => 'Có',
+        'lazy_loading_helper' => 'Bật tính năng tải chậm cho hình ảnh và iframe để cải thiện hiệu suất.',
+        'enable_caching' => 'Bật bộ nhớ cache',
+        'caching_helper' => 'Bật bộ nhớ cache shortcode để cải thiện hiệu suất.',
+        'cache_disabled_notice' => 'Lưu ý: Bộ nhớ cache hiện đang bị vô hiệu hóa trong cài đặt hệ thống.',
+        'lazy_loading_disabled_notice' => 'Lưu ý: Tải chậm hiện đang bị vô hiệu hóa trong cài đặt hệ thống.',
+        'custom_css' => 'CSS tùy chỉnh',
+        'custom_css_helper' => 'Thêm CSS tùy chỉnh cho shortcode này.',
+        'background_color' => 'Màu nền',
+        'text_color' => 'Màu chữ',
+        'text_color_helper' => 'Chọn màu chữ cho shortcode.',
+        'background_image' => 'Hình nền',
+        'quantity' => 'Số lượng',
+        'tab_number' => 'Tab #:number',
+    ],
+];

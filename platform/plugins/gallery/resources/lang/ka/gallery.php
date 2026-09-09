@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'create' => 'ახალი გალერეის შექმნა',
+    'galleries' => 'გალერეები',
+    'item' => 'გალერეის ელემენტი',
+    'select_image' => 'აირჩიეთ სურათები',
+    'reset' => 'გალერეის გადატვირთვა',
+    'update_photo_description' => 'ფოტოს აღწერის განახლება',
+    'update_photo_description_placeholder' => 'ფოტოს აღწერა...',
+    'delete_photo' => 'ამ ფოტოს წაშლა',
+    'gallery_box' => 'გალერეის სურათები',
+    'by' => 'ავტორი',
+    'menu_name' => 'გალერეები',
+    'gallery_images' => 'გალერეის სურათები',
+    'add_gallery_short_code' => 'გალერეის დამატება',
+    'shortcode_name' => 'გალერეის სურათები',
+    'limit_display' => 'ჩვენების რაოდენობის შეზღუდვა',
+    'edit_this_gallery' => 'ამ გალერეის რედაქტირება',
+    'galleries_page' => 'გალერეების გვერდი',
+    'by_name' => ':name-ის მიერ',
+    'title' => 'სათაური',
+    'limit' => 'ლიმიტი',
+    'limit_helper' => 'საჩვენებელი გალერეების რაოდენობა. ',
+];

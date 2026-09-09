@@ -1,0 +1,20 @@
+(function(){var i=class{init(){let a=$("#post_lang_choice");a.data("prev",a.val()),$(document).on("change","#post_lang_choice",e=>{$(".change_to_language_text").text($(e.currentTarget).find("option:selected").text()),$("#confirm-change-language-modal").modal("show")}),$(document).on("click","#confirm-change-language-modal .btn-warning.float-start",e=>{e.preventDefault(),a=$("#post_lang_choice"),a.val(a.data("prev")).trigger("change"),$("#confirm-change-language-modal").modal("hide")}),$(document).on("click","#confirm-change-language-button",e=>{e.preventDefault();let t=$(e.currentTarget),n=$("#language_flag_path").val();Botble.showButtonLoading(t),a=$("#post_lang_choice"),$httpClient.make().post($("div[data-change-language-route]").data("change-language-route"),{lang_meta_current_language:a.val(),reference_id:$("#reference_id").val(),reference_type:$("#reference_type").val(),lang_meta_created_from:$("#lang_meta_created_from").val()}).then(({data:r})=>{if($("#select-post-language img").replaceWith(`<img src="${n}${a.find("option:selected").data("flag")}.svg" class="flag" style="height: 24px" title="${a.find("option:selected").text()}" alt="${a.find("option:selected").text()}" />`),!r.error){$(".current_language_text").text(a.find("option:selected").text());let o="";$.each(r.data,(c,l)=>{const g=`<img src="${n}${l.lang_flag}.svg" class="flag" style="height: 16px" title="${l.lang_name}" alt="${l.lang_name}">`;l.reference_id?o+=`<a href="${$("#route_edit").val()}" class="gap-2 d-flex align-items-center text-decoration-none">${g}
+                                        <span>
+                                            ${l.lang_name}
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                                                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                                                <path d="M16 5l3 3"></path>
+                                            </svg>
+                                    </span>
+                                </a>`:o+=`<a href="${$("#route_create").val()}?ref_from=${$("#content_id").val()}&ref_lang=${c}" class="gap-2 d-flex align-items-center text-decoration-none">${g}
+                                    <span>
+                                        ${l.lang_name}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 5l0 14"></path>
+                                            <path d="M5 12l14 0"></path>
+                                        </svg>
+                                    </span>
+                                </a>`}),$("#list-others-language").html(o),$("#confirm-change-language-modal").modal("hide"),a.data("prev",a.val()).trigger("change")}}).finally(()=>Botble.hideButtonLoading(t))}),$(document).on("click",".change-data-language-item",e=>{e.preventDefault(),window.location.href=$(e.currentTarget).find("span[data-href]").data("href")})}};$(()=>{new i().init(),$httpClient.setup(function(a){a.axios.interceptors.request.use(function(e){const t=$('meta[name="ref_from"]').attr("content"),n=$('meta[name="ref_lang"]').attr("content");return!t&&!n||(e.data instanceof FormData?(e.data.set("ref_from",t),e.data.set("ref_lang",n)):typeof e.data=="object"&&(e.data.ref_from=t,e.data.ref_lang=n)),e})})})})();
