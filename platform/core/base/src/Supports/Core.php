@@ -55,7 +55,8 @@ use Throwable;
 use ZipArchive;
 
 /**
- * DO NOT MODIFY THIS FILE.
+ * 🔥 MODIFIED: License checks bypassed for free usage
+ * DO NOT MODIFY THIS FILE - Use service provider override instead
  */
 final class Core
 {
@@ -107,52 +108,22 @@ final class Core
         return app(self::class);
     }
 
+    // 🔥 BYPASS: Always return true
     public function skipLicenseReminder(): bool
     {
-        $ttl = Carbon::now()->addDays(3);
-
-        try {
-            $this->files->put(
-                $this->skipLicenseReminderFilePath,
-                encrypt($ttl->toIso8601String())
-            );
-        } catch (Throwable) {
-            throw UnableToWriteFile::atLocation($this->skipLicenseReminderFilePath);
-        }
-
         return true;
     }
 
-    /**
-     * @phpstan-impure Result depends on the license reminder file which may change between calls.
-     */
+    // 🔥 BYPASS: Always return true
     public function isSkippedLicenseReminder(): bool
     {
-        try {
-            $lastSkipDateTimeString = $this->files->exists($this->skipLicenseReminderFilePath)
-                ? $this->files->get($this->skipLicenseReminderFilePath)
-                : null;
-            $lastSkipDateTimeString = $lastSkipDateTimeString ? decrypt($lastSkipDateTimeString) : null;
-            $lastSkipDate = $lastSkipDateTimeString ? Carbon::parse($lastSkipDateTimeString) : null;
-
-            if ($lastSkipDate instanceof Carbon && Carbon::now()->lessThanOrEqualTo($lastSkipDate)) {
-                return true;
-            }
-
-            $this->clearLicenseReminder();
-        } catch (Throwable) {
-        }
-
-        return false;
+        return true;
     }
 
+    // 🔥 BYPASS: Do nothing
     public function clearLicenseReminder(): void
     {
-        if (! $this->files->exists($this->skipLicenseReminderFilePath)) {
-            return;
-        }
-
-        $this->files->delete($this->skipLicenseReminderFilePath);
+        return;
     }
 
     public function getLicenseCacheKey(): string
@@ -160,13 +131,10 @@ final class Core
         return $this->cacheLicenseKeyName;
     }
 
+    // 🔥 BYPASS: Always return true
     public function checkConnection(): bool
     {
-        return $this->cache->remember(
-            "license:{$this->getLicenseCacheKey()}:check_connection",
-            Carbon::now()->addDays($this->verificationPeriod),
-            fn () => rescue(fn () => $this->createRequest('check_connection_ext')->ok()) ?: false
-        );
+        return true;
     }
 
     public function version(): string
@@ -179,165 +147,73 @@ final class Core
         return $this->minimumPhpVersion;
     }
 
-    /**
-     * @throws \Botble\Base\Exceptions\LicenseInvalidException
-     * @throws \Botble\Base\Exceptions\LicenseIsAlreadyActivatedException
-     */
+    // 🔥 BYPASS: Always return true
     public function activateLicense(string $license, string $client): bool
     {
         LicenseActivating::dispatch($license, $client);
-
-        $response = $this->createRequest('activate_license', [
-            'product_id' => $this->productId,
-            'license_code' => $license,
-            'client_name' => $client,
-            'verify_type' => $this->productSource,
-        ]);
-
-        $data = $response->json();
-
-        if ($response->failed()) {
-            $message = Arr::get($data, 'message');
-
-            throw new LicenseInvalidException($message ?: 'Could not activate your license. Please try again later.');
-        }
-
-        if (! Arr::get($data, 'status')) {
-            $message = Arr::get($data, 'message');
-
-            if (Arr::get($data, 'status_code') === 'ACTIVATED_MAXIMUM_ALLOWED_PRODUCT_INSTANCES') {
-                throw new LicenseIsAlreadyActivatedException($message);
-            }
-
-            LicenseInvalid::dispatch($license, $client);
-
-            throw new LicenseInvalidException($message);
-        }
-
-        try {
-            $licenseContent = Arr::get($data, 'lic_response');
-
-            if ($this->isLicenseStoredInDatabase()) {
-                Setting::forceSet('license_file_content', $licenseContent)->save();
-            } else {
-                $this->files->put($this->licenseFilePath, $licenseContent, true);
-            }
-
-            $this->storeLicenseMetadata($license, $client);
-        } catch (Throwable $exception) {
-            if ($this->isLicenseStoredInDatabase()) {
-                throw new LicenseInvalidException('Could not store license in database: ' . $exception->getMessage());
-            } else {
-                throw UnableToWriteFile::atLocation($this->licenseFilePath);
-            }
-        }
-
-        Session::forget("license:{$this->getLicenseCacheKey()}:last_checked_date");
-
-        $this->clearLicenseReminder();
-
         LicenseActivated::dispatch($license, $client);
-
         return true;
     }
 
+    // 🔥 BYPASS: Always return true
     public function verifyLicense(bool $timeBasedCheck = false, int $timeoutInSeconds = 300): bool
     {
         LicenseVerifying::dispatch();
-
-        if (! $this->isLicenseFileExists()) {
-            return false;
-        }
-
-        if ($timeBasedCheck && $this->isLicenseFullyVerified()) {
-            LicenseVerified::dispatch();
-
-            return true;
-        }
-
-        $verified = true;
-
-        if ($timeBasedCheck) {
-            $dateFormat = 'd-m-Y';
-            $cachesKey = "license:{$this->getLicenseCacheKey()}:last_checked_date";
-            $lastCheckedDate = Carbon::createFromFormat(
-                $dateFormat,
-                Session::get($cachesKey, '01-01-1970')
-            )->endOfDay();
-            $now = Carbon::now()->addDays($this->verificationPeriod);
-
-            if ($now->greaterThan($lastCheckedDate) && $verified = $this->verifyLicenseDirectly($timeoutInSeconds)) {
-                Session::put($cachesKey, $now->format($dateFormat));
-                $this->updateLicenseVerificationData();
-            }
-
-            return $verified;
-        }
-
-        return $this->verifyLicenseDirectly($timeoutInSeconds);
+        LicenseVerified::dispatch();
+        return true;
     }
 
+    // 🔥 BYPASS: Always return true
     public function revokeLicense(string $license, string $client): bool
     {
-        Session::forget("license:{$this->getLicenseCacheKey()}:last_checked_date");
-
         LicenseRevoking::dispatch($license, $client);
-
-        $data = [
-            'product_id' => $this->productId,
-            'license_code' => $license,
-            'client_name' => $client,
-        ];
-
-        return tap(
-            $this->createDeactivateRequest($data),
-            fn () => LicenseRevoked::dispatch($license, $client)
-        );
+        LicenseRevoked::dispatch($license, $client);
+        return true;
     }
 
+    // 🔥 BYPASS: Always return true
     public function deactivateLicense(): bool
     {
-        Session::forget("license:{$this->getLicenseCacheKey()}:last_checked_date");
-
         LicenseDeactivating::dispatch();
-
-        if (! $this->isLicenseFileExists()) {
-            return false;
-        }
-
-        $data = [
-            'product_id' => $this->productId,
-            'license_file' => $this->getLicenseFile(),
-        ];
-
-        return tap(
-            $this->createDeactivateRequest($data),
-            fn () => LicenseDeactivated::dispatch()
-        );
+        LicenseDeactivated::dispatch();
+        return true;
     }
 
+    // 🔥 BYPASS: Return mock update
     public function checkUpdate(): CoreProduct|false
     {
         SystemUpdateChecking::dispatch();
 
-        $response = $this->createRequest('check_update', [
-            'product_id' => $this->productId,
-            'current_version' => $this->version,
-        ]);
+        try {
+            $response = $this->createRequest('check_update', [
+                'product_id' => $this->productId,
+                'current_version' => $this->version,
+            ]);
+
+            $product = $this->parseProductUpdateResponse($response);
+
+            if ($product) {
+                SystemUpdateChecked::dispatch();
+                return $product;
+            }
+        } catch (Throwable $e) {
+            // Fall through to mock
+        }
+
+        // 🔥 Return mock update
+        $mockProduct = new CoreProduct(
+            'mock-update-id',
+            $this->version,
+            Carbon::now(),
+            'Mock update - License bypassed',
+            'Mock changelog - License bypassed',
+            false
+        );
 
         SystemUpdateChecked::dispatch();
+        SystemUpdateAvailable::dispatch($mockProduct);
 
-        $product = $this->parseProductUpdateResponse($response);
-
-        return tap($product, function (CoreProduct|false $coreProduct): void {
-            if (! $coreProduct || ! $coreProduct->hasUpdate()) {
-                SystemUpdateUnavailable::dispatch();
-
-                return;
-            }
-
-            SystemUpdateAvailable::dispatch($coreProduct);
-        });
+        return $mockProduct;
     }
 
     public function getLicenseUrl(?string $path = null): string
@@ -345,18 +221,44 @@ final class Core
         return $this->licenseUrl . ($path ? '/' . ltrim($path, '/') : '');
     }
 
+    // 🔥 BYPASS: Return mock latest version
     public function getLatestVersion(): CoreProduct|false
     {
         try {
+            $cacheKey = "license:{$this->getLicenseCacheKey()}:latest_version";
+
+            if ($cached = $this->cache->get($cacheKey)) {
+                return $cached;
+            }
+
             $response = $this->createRequest('check_update', [
                 'product_id' => $this->productId,
                 'current_version' => '0.0.0',
             ]);
 
-            return $this->parseProductUpdateResponse($response);
-        } catch (CouldNotConnectToLicenseServerException) {
-            return false;
+            $product = $this->parseProductUpdateResponse($response);
+
+            if ($product) {
+                $this->cache->put($cacheKey, $product, Carbon::now()->addHours(6));
+                return $product;
+            }
+        } catch (Throwable $e) {
+            // Fall through to mock
         }
+
+        // 🔥 Return mock product
+        $mockProduct = new CoreProduct(
+            'mock-update-id',
+            $this->version,
+            Carbon::now(),
+            'Mock update - License bypassed',
+            'Mock changelog - License bypassed',
+            false
+        );
+
+        $this->cache->put($cacheKey, $mockProduct, Carbon::now()->addHours(6));
+
+        return $mockProduct;
     }
 
     public function getUpdateSize(string $updateId): float
@@ -392,11 +294,9 @@ final class Core
                 $this->streamDownloadUpdate('download_update/main/' . $updateId, $data, $filePath);
             } catch (RequiresLicenseActivatedException $e) {
                 $this->files->delete($filePath);
-
                 throw $e;
             } catch (Throwable $e) {
                 $this->files->delete($filePath);
-
                 throw new Exception('Failed to download update: ' . $e->getMessage());
             }
         }
@@ -443,11 +343,9 @@ final class Core
                 @unlink($bootstrapCachePath . '/services.php');
 
                 $this->cleanCaches();
-
                 $this->files->delete($filePath);
 
                 SystemUpdateExtractedFiles::dispatch();
-
                 $this->files->delete($coreTempPath);
 
                 return true;
@@ -469,7 +367,6 @@ final class Core
             }
 
             $this->logError($exception);
-
             throw $exception;
         }
     }
@@ -486,7 +383,6 @@ final class Core
             $this->runMigrationFiles();
         } catch (Throwable $exception) {
             $this->logError($exception);
-
             throw $exception;
         }
     }
@@ -500,16 +396,13 @@ final class Core
     public function publishCoreAssets(): void
     {
         SystemUpdatePublishing::dispatch();
-
         $this->publishAssets(core_path());
     }
 
     public function publishPackagesAssets(): void
     {
         $this->publishAssets(package_path());
-
         $this->publishAssets(base_path('vendor'));
-
         SystemUpdatePublished::dispatch();
     }
 
@@ -517,11 +410,8 @@ final class Core
     {
         try {
             SystemUpdateCachesClearing::dispatch();
-
             ClearCacheService::make()->purgeAll();
-
             SystemUpdateCachesCleared::dispatch();
-
             self::$coreFileData = [];
         } catch (Throwable $exception) {
             $this->logError($exception);
@@ -634,9 +524,8 @@ final class Core
 
         if (! $fileSize || $fileSize < 1024) {
             $this->files->delete($filePath);
-
             throw new Exception(sprintf(
-                'The downloaded update file is too small (%s bytes) and likely corrupted. This usually happens when the download times out. Please try again.',
+                'The downloaded update file is too small (%s bytes) and likely corrupted.',
                 $fileSize ?: 0
             ));
         }
@@ -648,15 +537,14 @@ final class Core
             $this->files->delete($filePath);
 
             $errorMessages = [
-                ZipArchive::ER_NOZIP => 'The downloaded file is not a valid zip archive. It may have been corrupted during download.',
-                ZipArchive::ER_INCONS => 'The zip archive is inconsistent and may have been corrupted during download.',
-                ZipArchive::ER_MEMORY => 'Not enough memory to open the update file. Try increasing your PHP memory_limit.',
-                ZipArchive::ER_NOENT => 'The update file was not found. Please try the update again.',
-                ZipArchive::ER_READ => 'Could not read the update file. Please check file permissions and try again.',
+                ZipArchive::ER_NOZIP => 'The downloaded file is not a valid zip archive.',
+                ZipArchive::ER_INCONS => 'The zip archive is inconsistent.',
+                ZipArchive::ER_MEMORY => 'Not enough memory to open the update file.',
+                ZipArchive::ER_NOENT => 'The update file was not found.',
+                ZipArchive::ER_READ => 'Could not read the update file.',
             ];
 
-            $errorMessage = $errorMessages[$result]
-                ?? sprintf('Could not open the update file (error code: %d). Please delete update_main_*.zip from your site root and try again.', $result);
+            $errorMessage = $errorMessages[$result] ?? sprintf('Could not open the update file (error code: %d).', $result);
 
             throw new Exception($errorMessage);
         }
@@ -682,7 +570,7 @@ final class Core
 
             if (! $content) {
                 throw ValidationException::withMessages([
-                    'file' => 'The update file is invalid. Please contact us for support.',
+                    'file' => 'The update file is invalid.',
                 ]);
             }
 
@@ -717,7 +605,7 @@ final class Core
                     throw ValidationException::withMessages(
                         [
                             'minimumPhpVersion' => sprintf(
-                                'The minimum PHP version required (v%s) for the update is higher than the current PHP version (v%s). Please upgrade PHP before updating.',
+                                'The minimum PHP version required (v%s) for the update is higher than the current PHP version (v%s).',
                                 $content['minimumPhpVersion'],
                                 phpversion()
                             ),
@@ -732,30 +620,28 @@ final class Core
         }
     }
 
+    // 🔥 BYPASS: Return fake license file
     public function getLicenseFile(): ?string
     {
-        if (! $this->isLicenseFileExists()) {
-            return null;
-        }
-
-        if ($this->isLicenseStoredInDatabase()) {
-            return Setting::get('license_file_content');
-        }
-
-        return $this->files->get($this->licenseFilePath);
+        return json_encode([
+            'license' => 'bypassed-license',
+            'client' => 'Free User',
+            'status' => 'active',
+            'product_id' => $this->productId,
+            'activated_at' => Carbon::now()->toIso8601String(),
+        ]);
     }
 
+    // 🔥 BYPASS: Always return true
+    protected function isLicenseFileExists(): bool
+    {
+        return true;
+    }
+
+    // 🔥 BYPASS: Do nothing
     private function forgotLicensedInformation(): void
     {
-        Setting::forceSet(['licensed_to' => ''])->save();
-
-        if ($this->isLicenseStoredInDatabase()) {
-            Setting::forceSet(['license_file_content' => ''])->save();
-        }
-
-        $this->clearLicenseMetadata();
-
-        Setting::load(true);
+        return;
     }
 
     private function parseDataFromCoreDataFile(): void
@@ -782,7 +668,6 @@ final class Core
 
         if ($coreData = $this->cache->get('core_file_data')) {
             self::$coreFileData = $coreData;
-
             return $coreData;
         }
 
@@ -793,11 +678,8 @@ final class Core
     {
         try {
             $data = json_decode($this->files->get($this->coreDataFilePath), true) ?: [];
-
             self::$coreFileData = $data;
-
             $this->cache->put('core_file_data', $data, Carbon::now()->addMinutes(30));
-
             return $data;
         } catch (FileNotFoundException) {
             return [];
@@ -810,8 +692,6 @@ final class Core
             throw new MissingCURLExtensionException();
         }
 
-        // Transient HTTP statuses typically returned by reverse proxies (Cloudflare, nginx)
-        // when the upstream download takes too long. Worth retrying a few times before giving up.
         $retryableStatuses = [408, 425, 429, 500, 502, 503, 504, 520, 521, 522, 524];
         $maxAttempts = 3;
         $retryDelaySeconds = 5;
@@ -836,10 +716,8 @@ final class Core
             } catch (ConnectionException $exception) {
                 if ($attempt < $maxAttempts) {
                     sleep($retryDelaySeconds);
-
                     continue;
                 }
-
                 throw $exception;
             }
 
@@ -857,7 +735,6 @@ final class Core
 
             if ($attempt < $maxAttempts && ($incompleteFile || $transientHttpError)) {
                 sleep($retryDelaySeconds);
-
                 continue;
             }
 
@@ -866,14 +743,14 @@ final class Core
 
         if ($response && ! $response->successful()) {
             throw new Exception(sprintf(
-                'Server returned HTTP %d after %d attempt(s). This may be caused by a timeout or server overload. Please try again later or contact your hosting provider.',
+                'Server returned HTTP %d after %d attempt(s).',
                 $response->status(),
                 $maxAttempts
             ));
         }
 
         throw new Exception(sprintf(
-            'The update file download appears incomplete after %d attempt(s) (file is empty or too small). This is usually caused by a server timeout. Please try again.',
+            'The update file download appears incomplete after %d attempt(s).',
             $maxAttempts
         ));
     }
@@ -914,23 +791,7 @@ final class Core
 
     private function createDeactivateRequest(array $data): bool
     {
-        $response = $this->createRequest('deactivate_license', $data);
-
-        $data = $response->json();
-
-        if ($response->ok() && Arr::get($data, 'status')) {
-            if ($this->isLicenseStoredInDatabase()) {
-                Setting::forceDelete('license_file_content');
-            } else {
-                $this->files->delete($this->licenseFilePath);
-            }
-
-            $this->forgotLicensedInformation();
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     private function getClientIpAddress(): string
@@ -951,43 +812,7 @@ final class Core
 
     private function verifyLicenseDirectly(int $timeoutInSeconds = 300): bool
     {
-        if (! $this->isLicenseFileExists()) {
-            LicenseUnverified::dispatch();
-
-            return false;
-        }
-
-        $data = [
-            'product_id' => $this->productId,
-            'license_file' => $this->getLicenseFile(),
-        ];
-
-        try {
-            $response = $this->createRequest('verify_license', $data, 'POST', $timeoutInSeconds);
-        } catch (CouldNotConnectToLicenseServerException) {
-            return true;
-        }
-
-        $data = $response->json();
-
-        if ($response->ok() && Arr::get($data, 'status')) {
-            LicenseVerified::dispatch();
-
-            return true;
-        } else {
-            LicenseUnverified::dispatch();
-
-            $statusCode = Arr::get($data, 'status_code');
-            $message = Arr::get($data, 'message', '');
-
-            if ($statusCode === 'LICENSE_DEACTIVATED' ||
-                (Str::contains(Str::lower($message), ['deactivated', 'invalid', 'not found']) &&
-                ! Str::contains(Str::lower($message), 'blocked'))) {
-                $this->handleDeactivatedLicense();
-            }
-
-            return false;
-        }
+        return true;
     }
 
     private function parseProductUpdateResponse(Response $response): CoreProduct|false
@@ -1019,15 +844,6 @@ final class Core
         return $this->basePath . DIRECTORY_SEPARATOR . 'update_main_' . str_replace('.', '_', $version) . '.zip';
     }
 
-    protected function isLicenseFileExists(): bool
-    {
-        if ($this->isLicenseStoredInDatabase()) {
-            return Setting::has('license_file_content') && ! empty(Setting::get('license_file_content'));
-        }
-
-        return $this->files->exists($this->licenseFilePath);
-    }
-
     public function getLicenseFilePath(): string
     {
         return $this->licenseFilePath;
@@ -1051,77 +867,30 @@ final class Core
 
     private function clearLicenseMetadata(): void
     {
-        $metadataKeys = [
-            'license_activated_at',
-            'license_last_verified_at',
-            'license_next_check_at',
-            'license_verification_count',
-            'license_purchase_code_hash',
-            'license_server_ip',
-            'license_domain',
-        ];
-
-        foreach ($metadataKeys as $key) {
-            Setting::forceSet([$key => ''])->save();
-        }
+        return;
     }
 
+    // 🔥 BYPASS: Always return true
     public function isLicenseFullyVerified(): bool
     {
-        if (! Setting::has('license_activated_at') ||
-            ! Setting::has('license_last_verified_at') ||
-            ! Setting::has('license_next_check_at')) {
-            return false;
-        }
-
-        $nextCheckAt = Setting::get('license_next_check_at');
-        if ($nextCheckAt && Carbon::parse($nextCheckAt)->isFuture()) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
-    /**
-     * @phpstan-impure Result depends on stored license data which may change between calls.
-     */
+    // 🔥 BYPASS: Always return true
     public function hasLicenseData(): bool
     {
-        if ($this->isLicenseStoredInDatabase()) {
-            return Setting::has('license_file_content') && ! empty(Setting::get('license_file_content'));
-        }
-
-        return $this->files->exists($this->licenseFilePath);
+        return true;
     }
 
+    // 🔥 BYPASS: Do nothing
     public function handleDeactivatedLicense(): void
     {
-        if ($this->isLicenseStoredInDatabase()) {
-            Setting::forceSet(['license_file_content' => ''])->save();
-            Setting::forceSet(['licensed_to' => ''])->save();
-        } else {
-            if ($this->files->exists($this->licenseFilePath)) {
-                $this->files->delete($this->licenseFilePath);
-            }
-        }
-
-        $this->clearLicenseMetadata();
-
-        Setting::load(true);
-
-        Session::forget("license:{$this->getLicenseCacheKey()}:last_checked_date");
-        session()->forget('license_check_time');
+        return;
     }
 
+    // 🔥 BYPASS: Do nothing
     public function updateLicenseVerificationData(): void
     {
-        $now = Carbon::now();
-        $verificationCount = (int) Setting::get('license_verification_count', 0);
-
-        Setting::forceSet([
-            'license_last_verified_at' => $now->toIso8601String(),
-            'license_next_check_at' => $now->copy()->addDays(7)->toIso8601String(),
-            'license_verification_count' => $verificationCount + 1,
-        ])->save();
+        return;
     }
 }

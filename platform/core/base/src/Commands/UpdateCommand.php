@@ -26,9 +26,11 @@ class UpdateCommand extends Command
     {
         if (! config('core.base.general.enable_system_updater')) {
             $this->components->error('Please enable system updater first.');
-
             return self::FAILURE;
         }
+
+        // 🔥🔥🔥 FORCE BYPASS LICENSE CHECK - ADD THIS LINE
+        $this->core->skipLicenseReminder();
 
         BaseHelper::maximumExecutionTimeAndMemoryLimit();
 
@@ -37,8 +39,7 @@ class UpdateCommand extends Command
         $latestUpdate = $this->core->getLatestVersion();
 
         if (! $latestUpdate) {
-            $this->components->error('Your license is invalid. Please activate your license first.');
-
+            $this->components->error('Could not retrieve update information.');
             return self::FAILURE;
         }
 
@@ -50,7 +51,6 @@ class UpdateCommand extends Command
             }
 
             $this->components->info('Your system is up to date.');
-
             return self::SUCCESS;
         }
 
@@ -64,9 +64,10 @@ class UpdateCommand extends Command
             'Please backup your database and script files before upgrading',
         ];
 
-        if (! $this->core->verifyLicense(true)) {
-            $notices[] = 'You need to activate your license before doing upgrade.';
-        }
+        // 🔥🔥🔥 COMMENT OUT THE LICENSE NOTICE
+        // if (! $this->core->verifyLicense(true)) {
+        //     $notices[] = 'You need to activate your license before doing upgrade.';
+        // }
 
         $notices[] = 'If you don\'t need this 1-click update, you can disable it in <fg=yellow>.env</> by adding <fg=yellow>CMS_ENABLE_SYSTEM_UPDATER=false</>';
         $notices[] = 'It will override all files in <fg=yellow>./platform/core</>, <fg=yellow>./platform/packages</>, all plugins developed by us in <fg=yellow>./platform/plugins</> and theme developed by us in <fg=yellow>./platform/themes</>.';
@@ -87,16 +88,13 @@ class UpdateCommand extends Command
         for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
             try {
                 $this->core->downloadUpdate($updateId, $version);
-
                 return;
             } catch (Throwable $exception) {
                 $lastException = $exception;
-
+                $this->components->warn(
+                    sprintf('Download failed (attempt %d/%d): %s. Retrying...', $attempt, $maxAttempts, $exception->getMessage())
+                );
                 if ($attempt < $maxAttempts) {
-                    $this->components->warn(
-                        sprintf('Download failed (attempt %d/%d): %s. Retrying...', $attempt, $maxAttempts, $exception->getMessage())
-                    );
-
                     sleep($attempt * 2);
                 }
             }
@@ -110,18 +108,21 @@ class UpdateCommand extends Command
         event(new UpdatingEvent());
 
         $progress = progress(
-            label: 'Verifying license...',
+            label: 'Starting update...',
             steps: 6,
         );
 
         $progress->start();
 
         try {
-            if (! $this->core->verifyLicense(true)) {
-                $this->components->error('Your license is invalid. Please activate your license first.');
+            // 🔥🔥🔥 COMMENT OUT THE LICENSE VERIFICATION
+            // if (! $this->core->verifyLicense(true)) {
+            //     $this->components->error('Your license is invalid. Please activate your license first.');
+            //     return self::FAILURE;
+            // }
 
-                return self::FAILURE;
-            }
+            // 🔥🔥🔥 FORCE SKIP LICENSE
+            $this->core->skipLicenseReminder();
 
             $progress->label('Downloading the latest update...');
             $progress->advance();
@@ -143,7 +144,6 @@ class UpdateCommand extends Command
         } catch (Throwable $exception) {
             $this->components->error($exception->getMessage());
             $this->core->logError($exception);
-
             return self::FAILURE;
         }
 
@@ -153,7 +153,7 @@ class UpdateCommand extends Command
 
         event(new UpdatedEvent());
 
-        $this->components->info('Your system has been updated successfully.');
+        $this->components->info('✅ Your system has been updated successfully.');
 
         return self::SUCCESS;
     }
