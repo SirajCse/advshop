@@ -49,6 +49,7 @@ class ThemeController extends BaseController
 
         $this->handleImportDatabaseFile($importDatabaseService, $request->input('theme'));
 
+        // 🔥 Go to accounts (skips license later)
         return redirect()
             ->to(URL::temporarySignedRoute('installers.accounts.index', Carbon::now()->addMinutes(30)));
     }

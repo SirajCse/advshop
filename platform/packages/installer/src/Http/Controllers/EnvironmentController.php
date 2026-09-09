@@ -50,7 +50,6 @@ class EnvironmentController extends BaseController
         ]);
 
         $results = $environmentManager->save($request);
-
         event(new EnvironmentSaved($request));
 
         if (InstallerStep::hasMoreThemes()) {
@@ -67,15 +66,11 @@ class EnvironmentController extends BaseController
             } else {
                 if (! Schema::hasTable('migrations')) {
                     Schema::create('migrations', function ($table): void {
-                        // The migrations table is responsible for keeping track of which of the
-                        // migrations have actually run for the application. We'll create the
-                        // table to hold the migration file's path as well as the batch ID.
                         $table->increments('id');
                         $table->string('migration');
                         $table->integer('batch');
                     });
                 }
-
                 Core::make()->runMigrationFiles();
             }
         }

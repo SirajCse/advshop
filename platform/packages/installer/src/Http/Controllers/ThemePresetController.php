@@ -45,6 +45,7 @@ class ThemePresetController extends BaseController
 
         $this->handleImportDatabaseFile($importDatabaseService, $selectedPresetId, $explicitDatabaseFile);
 
+        // 🔥 Go to accounts (skips license later)
         return redirect()
             ->to(URL::temporarySignedRoute('installers.accounts.index', Carbon::now()->addMinutes(30)));
     }

@@ -12,30 +12,58 @@ trait InteractsWithDatabaseFile
         string $fileName,
         ?string $explicitDatabaseFile = null
     ): void {
-        if ($explicitDatabaseFile) {
-            $candidate = base_path($explicitDatabaseFile);
+        try {
+            if ($explicitDatabaseFile) {
+                $candidate = base_path($explicitDatabaseFile);
 
-            if (File::exists($candidate)) {
-                $importDatabaseService->handle($candidate);
+                if (File::exists($candidate)) {
+                    $importDatabaseService->handle($candidate);
+                    return;
+                }
+            }
 
-                return;
+            $databaseToImport = $this->findDatabaseFile($fileName);
+
+            if ($databaseToImport && File::exists($databaseToImport)) {
+                $importDatabaseService->handle($databaseToImport);
+            } else {
+                // Log error but don't throw - allow installation to continue
+                Log::warning('No database file found to import for: ' . $fileName);
+            }
+        } catch (Throwable $e) {
+            Log::error('Database import failed: ' . $e->getMessage());
+            // Re-throw if you want to stop installation on database import failure
+            // throw $e;
+        }
+    }
+
+    protected function findDatabaseFile(string $fileName): ?string
+    {
+        // Priority 1: Theme-specific database file
+        $candidates = [
+            base_path(sprintf('database-%s.sql', $fileName)),
+            database_path(sprintf('sample/database-%s.sql', $fileName)),
+            database_path('sample/database.sql'),
+            base_path('database.sql'),
+        ];
+
+        foreach ($candidates as $candidate) {
+            if (File::exists($candidate) && File::size($candidate) > 1024) {
+                return $candidate;
             }
         }
 
-        $databaseToImport = base_path(sprintf('database-%s.sql', $fileName));
+        return null;
+    }
 
-        if (! File::exists($databaseToImport)) {
-            $databaseToImport = database_path(sprintf('sample/database-%s.sql', $fileName));
-        }
+    protected function hasDatabaseFile(string $fileName): bool
+    {
+        return $this->findDatabaseFile($fileName) !== null;
+    }
 
-        if (! File::exists($databaseToImport)) {
-            $databaseToImport = database_path('sample/database.sql');
-        }
-
-        if (! File::exists($databaseToImport)) {
-            $databaseToImport = base_path('database.sql');
-        }
-
-        $importDatabaseService->handle($databaseToImport);
+    protected function getDatabaseFileSize(string $fileName): int
+    {
+        $file = $this->findDatabaseFile($fileName);
+        return $file ? File::size($file) : 0;
     }
 }

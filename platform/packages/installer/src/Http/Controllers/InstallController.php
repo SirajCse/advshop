@@ -19,37 +19,24 @@ class InstallController extends BaseController
     public function index(): View|RedirectResponse
     {
         $languages = collect(Language::getLocales())->mapWithKeys(fn ($item, $key) => [$key => "{$item} - {$key}"]);
-
         return view('packages/installer::welcome', compact('languages'));
     }
 
-    public function next(
-        Request $request,
-        DownloadLocaleService $downloadLocaleService
-    ): RedirectResponse {
-        $request->validate([
-            'language' => ['required', 'string'],
-        ]);
+    public function next(Request $request, DownloadLocaleService $downloadLocaleService): RedirectResponse
+    {
+        $request->validate(['language' => ['required', 'string']]);
 
         $language = $request->input('language');
 
-        if ($language === 'en') {
-            return $this->redirectToNextStep();
+        if ($language !== 'en') {
+            try {
+                $downloadLocaleService->handle($language);
+            } catch (Throwable $e) {
+                BaseHelper::logError($e);
+            }
+            Session::put('site-locale', $language);
         }
 
-        try {
-            $downloadLocaleService->handle($language);
-        } catch (Throwable $e) {
-            BaseHelper::logError($e);
-        }
-
-        Session::put('site-locale', $language);
-
-        return $this->redirectToNextStep();
-    }
-
-    protected function redirectToNextStep()
-    {
         return redirect()->to(
             URL::signedRoute(
                 'installers.requirements.index',

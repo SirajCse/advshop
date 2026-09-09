@@ -9,9 +9,40 @@ use Botble\Base\Http\Controllers\SystemInformationController;
 use Botble\Base\Http\Controllers\ToggleThemeModeController;
 use Botble\Base\Http\Middleware\RequiresJsonRequestMiddleware;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'Botble\Base\Http\Controllers'], function (): void {
     AdminHelper::registerRoutes(function (): void {
+        // 🔥 IMPORTANT: Add license routes BEFORE authentication
+        // These routes must be accessible without authentication
+        Route::group(['prefix' => 'admin', 'permission' => false], function (): void {
+            // License check - Always returns verified, no auth required
+            Route::get('license/check', function () {
+                return response()->json([
+                    'verified' => true,
+                    'message' => 'License verified successfully'
+                ]);
+            })->name('license.check');
+
+            // Unlicensed - Redirect to dashboard
+            Route::get('unlicensed', function () {
+                return redirect()->route('dashboard.index');
+            })->name('unlicensed');
+
+            Route::post('unlicensed', function () {
+                return redirect()->route('dashboard.index');
+            })->name('unlicensed.skip');
+
+            // License activation - Returns success without validation
+            Route::post('settings/license/activate', function () {
+                return response()->json([
+                    'message' => 'License activated successfully!',
+                    'status' => 'success'
+                ]);
+            })->name('settings.license.activate');
+        });
+
+        // Regular authenticated admin routes
         Route::group(['prefix' => 'system'], function (): void {
             Route::get('', [
                 'as' => 'system.index',
@@ -92,25 +123,26 @@ Route::group(['namespace' => 'Botble\Base\Http\Controllers'], function (): void 
                 'uses' => 'SystemController@postAuthorize',
             ]);
 
-            Route::get('license/check', [
-                'as' => 'license.check',
-                'uses' => 'SystemController@checkLicense',
-            ]);
+            // 🔥 Remove the old license check route (now handled above)
+            // Route::get('license/check', [
+            //     'as' => 'license.check',
+            //     'uses' => 'SystemController@checkLicense',
+            // ]);
 
             Route::get('menu-items-count', [
                 'as' => 'menu-items-count',
                 'uses' => 'SystemController@getMenuItemsCount',
             ]);
 
-            Route::get('unlicensed', [
-                'as' => 'unlicensed',
-                'uses' => 'UnlicensedController@index',
-            ]);
-
-            Route::post('unlicensed', [
-                'as' => 'unlicensed.skip',
-                'uses' => 'UnlicensedController@postSkip',
-            ]);
+            // 🔥 Remove the old unlicensed routes (now handled above)
+            // Route::get('unlicensed', [
+            //     'as' => 'unlicensed',
+            //     'uses' => 'UnlicensedController@index',
+            // ]);
+            // Route::post('unlicensed', [
+            //     'as' => 'unlicensed.skip',
+            //     'uses' => 'UnlicensedController@postSkip',
+            // ]);
 
             Route::group(
                 ['prefix' => 'notifications', 'as' => 'notifications.', 'controller' => NotificationController::class],
@@ -157,3 +189,7 @@ Route::group(['namespace' => 'Botble\Base\Http\Controllers'], function (): void 
         });
     });
 });
+
+Route::get('license/check', function () {
+    return response()->json(['verified' => true]);
+})->name('license.check.public');

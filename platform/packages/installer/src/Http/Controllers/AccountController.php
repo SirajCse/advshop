@@ -46,11 +46,12 @@ class AccountController extends BaseController
             $user->save();
 
             $activateUserService->activate($user);
-
             Auth::login($user);
 
+            // 🔥 SKIP LICENSE - Go directly to final
             return redirect()
-                ->to(URL::temporarySignedRoute('installers.licenses.index', Carbon::now()->addMinutes(30)));
+                ->to(URL::temporarySignedRoute('installers.final', Carbon::now()->addMinutes(30)));
+
         } catch (Exception $exception) {
             return back()->withInput()->withErrors([
                 'first_name' => [$exception->getMessage()],

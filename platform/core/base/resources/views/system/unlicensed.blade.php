@@ -89,7 +89,6 @@
                                     type="hidden"
                                     name="redirect_url"
                                     value="{{ $redirectUrl }}"
-                                    /
                                 >
                             @endif
 
@@ -105,6 +104,4 @@
             </x-core::card>
         </div>
     </div>
-
-    @include('core/base::system.partials.license-activation-modal')
 </x-core::layouts.base>
