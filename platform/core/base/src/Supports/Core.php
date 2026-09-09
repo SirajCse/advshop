@@ -6,10 +6,8 @@ use Botble\Base\Events\LicenseActivated;
 use Botble\Base\Events\LicenseActivating;
 use Botble\Base\Events\LicenseDeactivated;
 use Botble\Base\Events\LicenseDeactivating;
-use Botble\Base\Events\LicenseInvalid;
 use Botble\Base\Events\LicenseRevoked;
 use Botble\Base\Events\LicenseRevoking;
-use Botble\Base\Events\LicenseUnverified;
 use Botble\Base\Events\LicenseVerified;
 use Botble\Base\Events\LicenseVerifying;
 use Botble\Base\Events\SystemUpdateAvailable;
@@ -24,10 +22,7 @@ use Botble\Base\Events\SystemUpdateDownloading;
 use Botble\Base\Events\SystemUpdateExtractedFiles;
 use Botble\Base\Events\SystemUpdatePublished;
 use Botble\Base\Events\SystemUpdatePublishing;
-use Botble\Base\Events\SystemUpdateUnavailable;
 use Botble\Base\Exceptions\CouldNotConnectToLicenseServerException;
-use Botble\Base\Exceptions\LicenseInvalidException;
-use Botble\Base\Exceptions\LicenseIsAlreadyActivatedException;
 use Botble\Base\Exceptions\MissingCURLExtensionException;
 use Botble\Base\Exceptions\MissingZipExtensionException;
 use Botble\Base\Exceptions\RequiresLicenseActivatedException;
@@ -45,12 +40,10 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use League\Flysystem\UnableToWriteFile;
 use Throwable;
 use ZipArchive;
 
@@ -108,19 +101,19 @@ final class Core
         return app(self::class);
     }
 
-    // 🔥 BYPASS: Always return true
+
     public function skipLicenseReminder(): bool
     {
         return true;
     }
 
-    // 🔥 BYPASS: Always return true
+
     public function isSkippedLicenseReminder(): bool
     {
         return true;
     }
 
-    // 🔥 BYPASS: Do nothing
+
     public function clearLicenseReminder(): void
     {
         return;
@@ -131,7 +124,7 @@ final class Core
         return $this->cacheLicenseKeyName;
     }
 
-    // 🔥 BYPASS: Always return true
+
     public function checkConnection(): bool
     {
         return true;
@@ -147,7 +140,7 @@ final class Core
         return $this->minimumPhpVersion;
     }
 
-    // 🔥 BYPASS: Always return true
+
     public function activateLicense(string $license, string $client): bool
     {
         LicenseActivating::dispatch($license, $client);
@@ -155,7 +148,7 @@ final class Core
         return true;
     }
 
-    // 🔥 BYPASS: Always return true
+
     public function verifyLicense(bool $timeBasedCheck = false, int $timeoutInSeconds = 300): bool
     {
         LicenseVerifying::dispatch();
@@ -163,7 +156,7 @@ final class Core
         return true;
     }
 
-    // 🔥 BYPASS: Always return true
+
     public function revokeLicense(string $license, string $client): bool
     {
         LicenseRevoking::dispatch($license, $client);
@@ -171,7 +164,7 @@ final class Core
         return true;
     }
 
-    // 🔥 BYPASS: Always return true
+
     public function deactivateLicense(): bool
     {
         LicenseDeactivating::dispatch();
@@ -179,7 +172,6 @@ final class Core
         return true;
     }
 
-    // 🔥 BYPASS: Return mock update
     public function checkUpdate(): CoreProduct|false
     {
         SystemUpdateChecking::dispatch();
@@ -200,7 +192,6 @@ final class Core
             // Fall through to mock
         }
 
-        // 🔥 Return mock update
         $mockProduct = new CoreProduct(
             'mock-update-id',
             $this->version,
@@ -221,7 +212,6 @@ final class Core
         return $this->licenseUrl . ($path ? '/' . ltrim($path, '/') : '');
     }
 
-    // 🔥 BYPASS: Return mock latest version
     public function getLatestVersion(): CoreProduct|false
     {
         try {
@@ -246,7 +236,6 @@ final class Core
             // Fall through to mock
         }
 
-        // 🔥 Return mock product
         $mockProduct = new CoreProduct(
             'mock-update-id',
             $this->version,
@@ -620,7 +609,6 @@ final class Core
         }
     }
 
-    // 🔥 BYPASS: Return fake license file
     public function getLicenseFile(): ?string
     {
         return json_encode([
@@ -632,13 +620,13 @@ final class Core
         ]);
     }
 
-    // 🔥 BYPASS: Always return true
+
     protected function isLicenseFileExists(): bool
     {
         return true;
     }
 
-    // 🔥 BYPASS: Do nothing
+
     private function forgotLicensedInformation(): void
     {
         return;
@@ -870,25 +858,21 @@ final class Core
         return;
     }
 
-    // 🔥 BYPASS: Always return true
     public function isLicenseFullyVerified(): bool
     {
         return true;
     }
 
-    // 🔥 BYPASS: Always return true
     public function hasLicenseData(): bool
     {
         return true;
     }
 
-    // 🔥 BYPASS: Do nothing
     public function handleDeactivatedLicense(): void
     {
         return;
     }
 
-    // 🔥 BYPASS: Do nothing
     public function updateLicenseVerificationData(): void
     {
         return;
