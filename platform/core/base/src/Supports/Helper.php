@@ -146,7 +146,8 @@ class Helper
         $defaultIpAddress = Request::ip() ?: '127.0.0.1';
 
         try {
-            $ip = trim(Http::withoutVerifying()->get('https://ipecho.net/plain')->body());
+            // PERFORMANCE FIX: no timeout previously (Laravel default 30s).
+            $ip = trim(Http::withoutVerifying()->connectTimeout(3)->timeout(5)->get('https://ipecho.net/plain')->body());
 
             return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : $defaultIpAddress;
         } catch (Throwable) {

@@ -15,7 +15,10 @@ class AbstractProvider
 
     protected function request(string $method, string $uri, array $data = []): Response
     {
-        $request = Http::withoutVerifying()->withToken($this->apiKey);
+        $request = Http::withoutVerifying()
+            ->connectTimeout(5)
+            ->timeout(15)
+            ->withToken($this->apiKey);
 
         $uri = $this->apiUrl . $uri;
 

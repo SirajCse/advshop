@@ -133,7 +133,9 @@ class SocialService
         }
 
         try {
-            $response = Http::post($this->getTokenRefreshEndpoint($provider), [
+            $response = Http::connectTimeout(5)
+                ->timeout(10)
+                ->post($this->getTokenRefreshEndpoint($provider), [
                 'client_id' => $this->setting($provider . '_app_id'),
                 'client_secret' => $this->setting($provider . '_app_secret'),
                 'refresh_token' => $refreshToken,

@@ -27,6 +27,8 @@ class SendWebhookWhenOrderCancelled
             $data = apply_filters('ecommerce_order_cancelled_webhook_data', $data, $order);
 
             Http::withoutVerifying()
+                ->connectTimeout(5)
+                ->timeout(10)
                 ->acceptJson()
                 ->post($webhookURL, $data);
         } catch (Exception $exception) {

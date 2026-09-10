@@ -64,6 +64,8 @@ class OpenExchangeRatesService implements ExchangeRateInterface
 
         $response = Http::baseUrl('https://openexchangerates.org/api')
             ->withoutVerifying()
+            ->connectTimeout(5)
+            ->timeout(15)
             ->acceptJson()
             ->get('latest.json?' . http_build_query($params));
 

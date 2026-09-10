@@ -37,6 +37,8 @@ class SendWebhookWhenShippingStatusUpdated
             $data = apply_filters('ecommerce_shipping_status_updated_webhook_data', $data, $order, $shipment);
 
             Http::withoutVerifying()
+                ->connectTimeout(5)
+                ->timeout(10)
                 ->acceptJson()
                 ->post($webhookURL, $data);
         } catch (Exception $exception) {

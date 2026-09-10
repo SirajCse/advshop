@@ -54,6 +54,8 @@ class SendWebhookWhenCartAbandoned
             $data = apply_filters('ecommerce_abandoned_cart_webhook_data', $data, $abandonedCart);
 
             Http::withoutVerifying()
+                ->connectTimeout(5)
+                ->timeout(10)
                 ->acceptJson()
                 ->post($webhookURL, $data);
         } catch (Exception $exception) {

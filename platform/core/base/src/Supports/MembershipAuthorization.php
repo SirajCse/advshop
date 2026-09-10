@@ -75,6 +75,9 @@ class MembershipAuthorization
             $response = Http::withoutVerifying()
                 ->asJson()
                 ->acceptJson()
+                // PERFORMANCE FIX: no timeout previously (Laravel default 30s).
+                ->connectTimeout(5)
+                ->timeout(15)
                 ->post('https://botble.com/membership/authorize', [
                     'website' => $this->url,
                 ]);

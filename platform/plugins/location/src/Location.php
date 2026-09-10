@@ -241,9 +241,12 @@ class Location
             $url = 'https://api.github.com/repos/botble/locations/git/trees/master';
 
             $data = Cache::remember($url, 60 * 60, function () use ($url) {
+                // PERFORMANCE FIX: no timeout previously (Laravel default 30s).
                 $response = Http::withoutVerifying()
                     ->asJson()
                     ->acceptJson()
+                    ->connectTimeout(5)
+                    ->timeout(15)
                     ->get($url);
 
                 if ($response->failed()) {
@@ -287,6 +290,8 @@ class Location
         if (! File::exists($destination)) {
             try {
                 $response = Http::withoutVerifying()
+                    ->connectTimeout(10)
+                    ->timeout(120)
                     ->sink(Utils::tryFopen($destination, 'w'))
                     ->get($repository . '/archive/refs/heads/master.zip');
 

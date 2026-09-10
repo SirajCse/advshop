@@ -78,8 +78,8 @@ class MarketplaceService
             ])
             ->acceptJson()
             ->withoutVerifying()
-            ->connectTimeout(100)
-            ->timeout(300);
+            ->connectTimeout(15)
+            ->timeout(120);
     }
 
     public function beginInstall(string $id, string $name, ?PluginService $pluginService = null): bool|JsonResponse

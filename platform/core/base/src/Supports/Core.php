@@ -697,7 +697,7 @@ final class Core
                     ->asJson()
                     ->acceptJson()
                     ->withoutVerifying()
-                    ->connectTimeout(100)
+                    ->connectTimeout(15)
                     ->timeout(900)
                     ->withOptions(['sink' => $filePath])
                     ->post($path, $data);
@@ -760,7 +760,7 @@ final class Core
                 ->asJson()
                 ->acceptJson()
                 ->withoutVerifying()
-                ->connectTimeout(100)
+                ->connectTimeout(15)
                 ->timeout($timeoutInSeconds);
 
             return match (Str::upper($method)) {

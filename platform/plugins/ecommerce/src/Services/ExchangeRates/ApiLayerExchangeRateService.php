@@ -63,6 +63,8 @@ class ApiLayerExchangeRateService implements ExchangeRateInterface
     {
         $response = Http::baseUrl('https://api.apilayer.com')
             ->withoutVerifying()
+            ->connectTimeout(5)
+            ->timeout(15)
             ->withHeaders(['apikey' => get_ecommerce_setting('api_layer_api_key')])
             ->acceptJson()
             ->get('exchangerates_data/latest?' . http_build_query($params));

@@ -3,9 +3,11 @@
 namespace Botble\Base\Supports;
 
 use Botble\Media\Facades\RvMedia;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -48,16 +50,51 @@ class GoogleFonts
             $fonts = $this->loadLocal($url, $nonce);
 
             if (! $fonts) {
+                // PERFORMANCE FIX: skip the remote fetch when it failed recently,
+                // otherwise a blocked/slow outbound connection to fonts.googleapis.com
+                // would hang EVERY page render (admin panel + frontend) for up to
+                // the HTTP timeout instead of falling back to a direct <link> tag.
+                if ($this->recentlyFailed($url)) {
+                    return null;
+                }
+
                 return $this->fetch($url, $nonce);
             }
 
             return $fonts;
         } catch (Exception $exception) {
+            $this->markAsFailed($url);
+
             if (App::hasDebugModeEnabled()) {
                 throw $exception;
             }
 
             return new Fonts(googleFontsUrl: $url, nonce: $nonce);
+        }
+    }
+
+    /**
+     * Remote fetch failures are remembered for a few hours so a slow/unreachable
+     * fonts server can never slow down page rendering on every single request.
+     */
+    protected function failureCacheKey(string $url): string
+    {
+        $generation = Cache::get('google_fonts_cache_generation', 1);
+
+        return sprintf('google_fonts_fetch_failed_%s_%s', $generation, md5($url));
+    }
+
+    protected function recentlyFailed(string $url): bool
+    {
+        return (bool) Cache::get($this->failureCacheKey($url));
+    }
+
+    protected function markAsFailed(string $url): void
+    {
+        try {
+            Cache::put($this->failureCacheKey($url), true, Carbon::now()->addHours(6));
+        } catch (Exception) {
+            // Cache backend unavailable: never let a perf guard break rendering.
         }
     }
 
@@ -106,12 +143,23 @@ class GoogleFonts
 
     protected function fetch(string $url, ?string $nonce): ?Fonts
     {
-        $response = Http::withHeaders(['User-Agent' => $this->userAgent])
-            ->timeout(300)
-            ->withoutVerifying()
-            ->get($url);
+        // PERFORMANCE FIX: was timeout(300) — a 5 minute block during page rendering.
+        // Fonts are cosmetic: fail fast (15s) and fall back to the direct stylesheet link.
+        try {
+            $response = Http::withHeaders(['User-Agent' => $this->userAgent])
+                ->timeout(15)
+                ->connectTimeout(5)
+                ->withoutVerifying()
+                ->get($url);
+        } catch (Exception) {
+            $this->markAsFailed($url);
+
+            return null;
+        }
 
         if ($response->failed()) {
+            $this->markAsFailed($url);
+
             return null;
         }
 
@@ -131,10 +179,26 @@ class GoogleFonts
             $storedFontPath = $this->path($url, $localizedFontUrl);
 
             if (! $this->files->exists($storedFontPath)) {
-                $this->files->put(
-                    $storedFontPath,
-                    Http::withoutVerifying()->get($fontUrl)->body(),
-                );
+                // PERFORMANCE FIX: this download previously had NO timeout
+                // (Laravel default 30s per font file, ~15-20 files per family).
+                try {
+                    $fontResponse = Http::withoutVerifying()
+                        ->timeout(15)
+                        ->connectTimeout(5)
+                        ->get($fontUrl);
+                } catch (Exception) {
+                    $this->markAsFailed($url);
+
+                    return null;
+                }
+
+                if ($fontResponse->failed() || ! $fontResponse->body()) {
+                    $this->markAsFailed($url);
+
+                    return null;
+                }
+
+                $this->files->put($storedFontPath, $fontResponse->body());
             }
 
             $localizedCss = str_replace(

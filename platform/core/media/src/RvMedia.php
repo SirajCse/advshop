@@ -1019,7 +1019,8 @@ class RvMedia
         $info = pathinfo($urlPath);
 
         try {
-            $response = Http::get($url);
+            // PERFORMANCE FIX: no timeout previously (Laravel default 30s).
+            $response = Http::connectTimeout(10)->timeout(60)->get($url);
 
             if ($response->failed() || ! $response->body()) {
                 return [

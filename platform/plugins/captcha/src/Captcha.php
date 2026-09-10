@@ -67,6 +67,8 @@ class Captcha extends CaptchaContract
 
         $response = Http::asForm()
             ->withoutVerifying()
+            ->connectTimeout(5)
+            ->timeout(10)
             ->post(self::RECAPTCHA_VERIFY_API_URL, [
                 'secret' => $this->secretKey,
                 'response' => $response,

@@ -43,6 +43,11 @@ class ClearCacheService
         if ($this->files->isDirectory($fontPath = Storage::path('fonts'))) {
             $this->files->deleteDirectory($fontPath);
         }
+
+        // PERFORMANCE FIX: invalidate "recently failed fetch" markers so the next
+        // page load immediately retries downloading fonts instead of waiting for
+        // the failure cache to expire.
+        Cache::increment('google_fonts_cache_generation');
     }
 
     public function clearBootstrapCache(): void
